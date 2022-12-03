@@ -1,0 +1,6 @@
+directory_structure
+alive_progress
+fade
+python-dotenv
+pathlib
+openai
