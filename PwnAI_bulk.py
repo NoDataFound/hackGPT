@@ -75,32 +75,42 @@ else:
 targets = input("Enter Filename: (Press enter for 'input/sample_sources' ) ") or "input/sample_sources"
 investigation = input("Enter name for your investigation: ")
 search = open(targets ,"r")
-fadedsearch ="""
+
+query = search.read()
+fadedsearch =r"""
                                          
-     _____     _____          _____   ______         _____    ____ 
- ___|\    \   |\    \   _____|\    \ |\     \    ___|\    \  |    |
-|    |\    \  | |    | /    /|\\    \| \     \  /    /\    \ |    |
-|    | |    | \/     / |    || \|    \  \     ||    |  |    ||    |
-|    |/____/| /     /_  \   \/  |     \  |    ||    |__|    ||    |
-|    ||    |||     // \  \   \  |      \ |    ||    .--.    ||    |
-|    ||____|/|    |/   \ |    | |    |\ \|    ||    |  |    ||    |
-|____|       |\ ___/\   \|   /| |____||\_____/||____|  |____||____|
-|    |       | |   | \______/ | |    |/ \|   |||    |  |    ||    |
-|____|        \|___|/\ |    | | |____|   |___|/|____|  |____||____|
-  \(             \(   \|____|/    \(       )/    \(      )/    \(  
-   '              '      )/        '       '      '      '      '  
-                         '                                         
-                                                      searching..."""
+             _____     _____          _____   ______         _____    ____ 
+         ___|\    \   |\    \   _____|\    \ |\     \    ___|\    \  |    |
+        |    |\    \  | |    | /    /|\\    \| \     \  /    /\    \ |    |
+        |    | |    | \/     / |    || \|    \  \     ||    |  |    ||    |
+        |    |/____/| /     /_  \   \/  |     \  |    ||    |__|    ||    |
+        |    ||    |||     // \  \   \  |      \ |    ||    .--.    ||    |
+        |    ||____|/|    |/   \ |    | |    |\ \|    ||    |  |    ||    |
+        |____|       |\ ___/\   \|   /| |____||\_____/||____|  |____||____|
+        |    |       | |   | \______/ | |    |/ \|   |||    |  |    ||    |
+        |____|        \|___|/\ |    | | |____|   |___|/|____|  |____||____|
+          \(             \(   \|____|/    \(       )/    \(      )/    \(  
+           '              '      )/        '       '      '      '      '  
+                                 '        
+searching OpenAI for """ 
+                                                     
 tookewl=fade.fire(fadedsearch)
 print(tookewl)
 
+query_parse = json.dumps(query.split("\n"), sort_keys=True, indent=4)
+
+print(query_parse)
+seperator = "─ ──+──── ──  ─   ─────────────────────────────────────────────────────────────────   ─  ── ────+── ─ "
+faded_seperator = fade.brazil(seperator)
+print(faded_seperator)
 openai_targets = []
 
 if 'OPENAI_TOKEN' in os.environ:
     pass
 else:
     os.environ['OPENAI_TOKEN'] = input('Enter API Key: ').replace(" ","")
-
+investigation = input("Enter name for your investigation: ")
+f_jsonpath = 'output/'+investigation+'/results'
 token = os.environ.get("OPENAI_TOKEN")
 
 os.mkdir('output/'+investigation)
@@ -133,10 +143,12 @@ with open(targets, 'r') as targets:
         with open('output/'+investigation+'/results/'+str(search.rsplit('/', 1)[-1])+ ".txt", "w") as f:
             f.write(response)
         fadedresponse = fade.greenblue(response)
+
+        print("🆁🅴🆂🆄🅻🆃🆂\n " + "𝚂𝚎𝚊𝚛𝚌𝚑:"+ str(search))
         print(fadedresponse)
+        print(faded_seperator)
         
-        
-f_jsonpath = 'output/'+investigation+'/results'
+
 
 path = Tree(f_jsonpath, absolute=False)
 print(path)
