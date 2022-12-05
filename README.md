@@ -39,7 +39,7 @@ pip3 install jupyter notebook
 ## 𝖫𝖺𝗎𝗇𝖼𝗁 𝖭𝗈𝗍𝖾𝖻𝗈𝗈𝗄 𝘄𝗶𝘁𝗵 𝗩𝗦𝗰𝗼𝗱𝗲
 
 <p align="center">
-<img align="center" src="https://github.com/NoDataFound/PwnAI/raw/main/res/PwnAI_notebook.png"></p> 
+<img align="center" src="https://user-images.githubusercontent.com/3261849/205510169-5269cde5-7565-4094-9a07-2d41e65bc717.png"></p> 
 
 `Configure .env with your OpenAI API key(notebook will help you)`
 
