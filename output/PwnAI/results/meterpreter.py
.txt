@@ -1,0 +1,5 @@
+ It's importing the socket library
+2. It's creating a socket object
+3. It's connecting to the IP address and port number specified in the command line arguments
+4. It's sending the string "Hello World" to the server
+5. It's receiving 1024 bytes of data from the server
