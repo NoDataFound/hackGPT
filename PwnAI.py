@@ -86,6 +86,10 @@ fadedsearch =r"""
                                                      
 tookewl=fade.purplepink(fadedsearch)
 print(tookewl)
+headers = {
+                    "Accept": "application/json; charset=utf-8",
+                    "Authorization": "Token" + apiToken
+                }
 payload = input("Enter Filename: (Press enter for 'input/malware/malware_sample' ) ") or "input/malware/malware_sample"
 payload = open(payload, "r").readlines()
 payload = str(payload)

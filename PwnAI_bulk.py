@@ -112,7 +112,10 @@ else:
     os.environ['OPENAI_TOKEN'] = input('Enter API Key: ').replace(" ","")
 f_jsonpath = 'output/'+investigation+'/results'
 token = os.environ.get("OPENAI_TOKEN")
-
+headers = {
+                    "Accept": "application/json; charset=utf-8",
+                    "Authorization": "Token" + apiToken
+                }
 os.mkdir('output/'+investigation)
 os.mkdir('output/'+investigation+'/results/')
 
