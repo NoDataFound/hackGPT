@@ -130,7 +130,7 @@ with open(targets, 'r') as targets:
         model="code-davinci-002",
         prompt=search+"\nHere's what this code is doing:\n1.",
         temperature=0,
-        max_tokens=64,
+        max_tokens=3000,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
