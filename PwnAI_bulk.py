@@ -113,8 +113,8 @@ else:
 #f_jsonpath = 'output/'+investigation+'/results'
 token = os.environ.get("OPENAI_TOKEN")
 
-#os.mkdir('output/'+investigation)
-#os.mkdir('output/'+investigation+'/results/')
+os.mkdir('output/'+investigation)
+os.mkdir('output/'+investigation+'/results/')
 
 with open(targets, 'r') as targets:
     for line in targets:
@@ -127,7 +127,7 @@ with open(targets, 'r') as targets:
         model="text-davinci-003",
         prompt=search+"\n\n",
         temperature=0,
-        max_tokens=3600,
+        max_tokens=64,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,

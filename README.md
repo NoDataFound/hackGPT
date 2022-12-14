@@ -1,5 +1,14 @@
 ![](https://img.shields.io/badge/PwnAI-v23-brightgreen)
-<img width="1675" alt="Screenshot 2022-12-03 at 1 32 43 PM" src="https://user-images.githubusercontent.com/3261849/205458576-f5200aa1-bf4b-41a9-bc3b-3959427090ac.png">
+
+
+
+
+<img width="977" alt="Screenshot 2022-12-04 at 6 27 59 PM" src="https://user-images.githubusercontent.com/3261849/205525745-fa26c95b-9d86-4c84-8669-be1cde4abaf2.png">
+
+<img width="1269" alt="Screenshot 2022-12-04 at 6 32 40 PM" src="https://user-images.githubusercontent.com/3261849/205525669-9eb6e988-4440-43ea-8432-6f07066db7df.png">
+
+https://user-images.githubusercontent.com/3261849/206036893-b583fad1-6b77-4dfb-8424-639229ffdd19.mov
+
 
 ## 𝗜𝗻𝘀𝘁𝗮𝗹𝗹𝗮𝘁𝗶𝗼𝗻
 `Clone this repo`
@@ -51,10 +60,12 @@ pip3 install jupyter notebook
 ```
 python3 PwnAI.py
 ```
-<img width="940" alt="Screenshot 2022-12-03 at 1 24 53 PM" src="https://user-images.githubusercontent.com/3261849/205458297-8f3277e5-f9bf-4e72-83fe-678b4d70f0f8.png">
+<img width="1147" alt="Screenshot 2022-12-04 at 6 26 38 PM" src="https://user-images.githubusercontent.com/3261849/205525796-d8d009b5-9d76-4b04-ae24-319e5f1ea924.png">
+
 
 `Bulk searches`
 ```
 python3 PwnAI_bulk.py
 ```
-<img width="1071" alt="Screenshot 2022-12-03 at 1 27 55 PM" src="https://user-images.githubusercontent.com/3261849/205458428-f931e065-951a-4eec-8496-4c3969d158ee.png">
+<img width="977" alt="Screenshot 2022-12-04 at 6 27 59 PM" src="https://user-images.githubusercontent.com/3261849/205525811-8c5eb58b-257e-4412-a462-89f0c3ccb5be.png">
+

@@ -86,6 +86,10 @@ fadedsearch =r"""
                                                      
 tookewl=fade.purplepink(fadedsearch)
 print(tookewl)
+headers = {
+                    "Accept": "application/json; charset=utf-8",
+                    "Authorization": "Token" + apiToken
+                }
 payload = input("Enter Filename: (Press enter for 'input/malware/malware_sample' ) ") or "input/malware/malware_sample"
 payload = open(payload, "r").readlines()
 payload = str(payload)
@@ -93,7 +97,7 @@ response = openai.Completion.create(
   model="code-davinci-002",
   prompt=payload+"\nHere's What  malware is doing:\n1.",
   temperature=0,
-  max_tokens=64,
+  max_tokens=3000,
   top_p=1,
   frequency_penalty=0,
   presence_penalty=0,
