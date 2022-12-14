@@ -15,7 +15,7 @@ from os import path
 from shutil import make_archive
 from directory_structure import Tree
 from alive_progress import alive_bar
-import time
+from time import sleep
 import openai
 from dotenv import load_dotenv
 load_dotenv()  
@@ -73,7 +73,7 @@ else:
    setting_token.write("OPENAI_TOKEN="+'"'+userkey+'"')
    
 targets = input("Enter Filename: (Press enter for 'input/sample_sources' ) ") or "input/sample_sources"
-investigation = input("Enter name for your investigation: ")
+#investigation = input("Enter name for your investigation: ")
 
 search = open(targets ,"r")
 query = search.read()
@@ -110,11 +110,11 @@ if 'OPENAI_TOKEN' in os.environ:
     pass
 else:
     os.environ['OPENAI_TOKEN'] = input('Enter API Key: ').replace(" ","")
-f_jsonpath = 'output/'+investigation+'/results'
+#f_jsonpath = 'output/'+investigation+'/results'
 token = os.environ.get("OPENAI_TOKEN")
 
-os.mkdir('output/'+investigation)
-os.mkdir('output/'+investigation+'/results/')
+#os.mkdir('output/'+investigation)
+#os.mkdir('output/'+investigation+'/results/')
 
 with open(targets, 'r') as targets:
     for line in targets:
@@ -124,26 +124,27 @@ with open(targets, 'r') as targets:
     for search in openai_targets:
         #search = search.strip()
         response = openai.Completion.create(
-        model="code-davinci-002",
-        prompt=search+"\nHere's what this code is doing:\n1.",
+        model="text-davinci-003",
+        prompt=search+"\n\n",
         temperature=0,
-        max_tokens=64,
+        max_tokens=3600,
         top_p=1,
         frequency_penalty=0,
         presence_penalty=0,
         stop=["\"\"\""]
         )
         response = response['choices'][0]['text']
-        with open('output/'+investigation+'/results/'+str(search.rsplit('/', 1)[-1])+ ".txt", "w") as f:
-            f.write(response)
-        fadedresponse = fade.greenblue("1."+response)
+        #with open('output/'+investigation+'/results/'+str(search.rsplit('/', 1)[-1])+ ".txt", "w") as f:
+        #    f.write(response)
+        fadedresponse = fade.greenblue(response)
 
         print(' '*39+"🆁🅴🆂🆄🅻🆃🆂\n" + "𝘚𝘦𝘢𝘳𝘤𝘩 𝘴𝘰𝘶𝘳𝘤𝘦 𝘪𝘯𝘱𝘶𝘵:"+ str(search).strip())
-        print("\n\033[36mHere's what I think this code is doing:")
+        print("\n\033[36mHere's your code:")
+        sleep(5)
         print(fadedresponse)
         print(faded_seperator)
         
 
 
-path = Tree(f_jsonpath, absolute=False)
+#path = Tree(f_jsonpath, absolute=False)
 print(path)

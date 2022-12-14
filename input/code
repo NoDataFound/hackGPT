@@ -1,0 +1,1 @@
+write a program in python that searches twitter for "im deleting twitter". Saves the username for search results, waits for 1 day, create a twitter account from the username in the list with a 23 character password and finally saves the new account information.
