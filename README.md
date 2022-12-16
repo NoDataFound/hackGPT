@@ -8,7 +8,7 @@
 
 `Ask ChatGPT to print its own source`
 
-<img width="675" alt="Screenshot 2022-12-16 at 4 46 35 PM" src="https://user-images.githubusercontent.com/3261849/208202201-db534197-71c8-4f26-8041-72dd25e8d356.png">
+<img width="675"  alt="Screenshot 2022-12-16 at 4 46 35 PM" src="https://user-images.githubusercontent.com/3261849/208202201-db534197-71c8-4f26-8041-72dd25e8d356.png">
 
 
 <img width="977" alt="Screenshot 2022-12-04 at 6 27 59 PM" src="https://user-images.githubusercontent.com/3261849/205525745-fa26c95b-9d86-4c84-8669-be1cde4abaf2.png">
