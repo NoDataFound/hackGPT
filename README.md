@@ -2,9 +2,13 @@
 
 <img width="1568" alt="hackGPT" src="https://user-images.githubusercontent.com/3261849/208184172-b5d79eb2-3dff-49e7-b735-d991c08e6ec8.png">
 
-<img width="1649" alt="Screenshot 2022-12-14 at 8 08 05 AM" src="https://user-images.githubusercontent.com/3261849/207626394-cb272c96-c370-4870-9a13-6d43397fb830.png">
-Automate CVE exploit creation and CyberDefense protections: (results https://github.com/NoDataFound/PwnAI/tree/main/output)
+`Automate CVE exploit creation and CyberDefense protections:` (results https://github.com/NoDataFound/PwnAI/tree/main/output)
 
+<img width="1649" alt="Screenshot 2022-12-14 at 8 08 05 AM" src="https://user-images.githubusercontent.com/3261849/207626394-cb272c96-c370-4870-9a13-6d43397fb830.png">
+
+`Ask ChatGPT to print its own source`
+
+<img width="675" alt="Screenshot 2022-12-16 at 4 46 35 PM" src="https://user-images.githubusercontent.com/3261849/208202201-db534197-71c8-4f26-8041-72dd25e8d356.png">
 
 
 <img width="977" alt="Screenshot 2022-12-04 at 6 27 59 PM" src="https://user-images.githubusercontent.com/3261849/205525745-fa26c95b-9d86-4c84-8669-be1cde4abaf2.png">
