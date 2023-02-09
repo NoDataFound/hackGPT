@@ -2,6 +2,10 @@
 
 <img width="1568" alt="hackGPT" src="https://user-images.githubusercontent.com/3261849/208184172-b5d79eb2-3dff-49e7-b735-d991c08e6ec8.png">
 <p align="center">
+  
+`Automate the parsing and analysis of json threat data from CyberDefense tools like my SecurityScorecard ASI API tool here: https://github.com/securityscorecard/ssc-asi-tools/tree/master/tools/SSC_APIHunter:`
+  
+<img width="1683" alt="sscplushgpt" src="https://user-images.githubusercontent.com/3261849/217700643-ab202279-9558-41da-83db-ce64f7e796a1.png">
 
 
 `Automate CVE exploit creation and CyberDefense protections:` (results https://github.com/NoDataFound/PwnAI/tree/main/output)
