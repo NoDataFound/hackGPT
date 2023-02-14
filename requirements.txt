@@ -4,3 +4,4 @@ fade
 python-dotenv
 pathlib
 openai
+gradio
