@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/PwnAI-v23-brightgreen)
+![hackGPTmsf](https://user-images.githubusercontent.com/3261849/219986916-e2e7130a-7ddd-4846-8cbe-9f448a95f99c.png)
 
-<img width="1820" alt="chatbot_hackgpt" src="https://user-images.githubusercontent.com/3261849/218878486-83cc7943-e02a-4c22-ab28-c3589bd82966.png">
 
 ![hackgpt23](https://user-images.githubusercontent.com/3261849/219220918-cc5d7855-8e0e-40f5-a5ef-1c323828896b.png)
 
