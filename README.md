@@ -48,6 +48,15 @@ https://user-images.githubusercontent.com/3261849/206036893-b583fad1-6b77-4dfb-8
 ```
 git clone https://github.com/NoDataFound/PwnAI.git
 ```
+`Clone this repo via SSH (alt. method)`
+```
+git clone git@github.com:NoDataFound/hackGPT.git
+```
+`Setup virtual environment (optional)`
+```
+~$ python3 -m venv env
+~$ source env/bin/activate
+```
 `Install dependancies`
 ```
 python3 -m pip install -r requirements.txt
