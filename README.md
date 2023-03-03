@@ -71,7 +71,7 @@ https://github.com/rapid7/metasploit-payloads/blob/master/powershell/MSF.Powersh
 ```
 
 `Open Jupyter Notebook`
-*Install Juypter Notebook if needed - use pip or download binaries here: https://jupyter.org/*
+*Install Jupyter Notebook if needed - use pip or download binaries here: https://jupyter.org/*
 ```
 pip3 install jupyter notebook
 ```
