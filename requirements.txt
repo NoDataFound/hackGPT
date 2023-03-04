@@ -5,3 +5,4 @@ python-dotenv
 pathlib
 openai
 gradio
+ipywidgets
