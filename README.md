@@ -1,14 +1,15 @@
 ![](https://img.shields.io/badge/PwnAI-v23-brightgreen)
-<img width="1987" alt="Screenshot 2023-03-03 at 8 00 47 PM" src="https://user-images.githubusercontent.com/3261849/222869879-853609ae-8c92-4303-a9e8-8df78de29206.png">
-
-![hackGPTmsf](https://user-images.githubusercontent.com/3261849/219986916-e2e7130a-7ddd-4846-8cbe-9f448a95f99c.png)
 
 
-![hackgpt23](https://user-images.githubusercontent.com/3261849/219220918-cc5d7855-8e0e-40f5-a5ef-1c323828896b.png)
+`Launch hackGPT with python` 
+
+https://user-images.githubusercontent.com/3261849/222942128-3f75b9b7-5763-4a0c-a4df-aadbb24dcf5d.mp4
+
+`Launch hackGPT with Google Colab(colab.research.google.com):` 
+
+https://user-images.githubusercontent.com/3261849/218538303-68c06a8e-071b-40a2-b7b2-b9e974b41f09.mp4
 
 
-
-https://user-images.githubusercontent.com/3261849/219220938-2ec562bf-8654-4315-94ad-09b9d7425a2e.mp4
 
 
 
@@ -22,10 +23,7 @@ https://user-images.githubusercontent.com/3261849/219220938-2ec562bf-8654-4315-9
 `hackGPT chatbot on mobile - https://colab.research.google.com/github/NoDataFound/hackGPT/blob/main/hacklab.hackGPT.ipynb`
 ![hackgpt_mobile](https://user-images.githubusercontent.com/3261849/218890190-e4edceff-ca65-4db0-93ee-82aa055eb576.png)
 
-`Launch hackGPT with Google Colab(colab.research.google.com):` 
 
-
-https://user-images.githubusercontent.com/3261849/218538303-68c06a8e-071b-40a2-b7b2-b9e974b41f09.mp4
 
 
 `Automate CVE exploit creation and CyberDefense protections:` (results https://github.com/NoDataFound/PwnAI/tree/main/output)
