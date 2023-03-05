@@ -6,3 +6,5 @@ pathlib
 openai
 gradio
 ipywidgets
+inquirer
+
