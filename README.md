@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/PwnAI-v23-brightgreen)
+![](https://img.shields.io/badge/hackGPT-v23-purple)
 
 
 `Launch hackGPT with python` 
