@@ -5,6 +5,10 @@
 
 https://user-images.githubusercontent.com/3261849/222942128-3f75b9b7-5763-4a0c-a4df-aadbb24dcf5d.mp4
 
+`Added PrettyTable for logging and It will load the chatbot in a new tab of your active broswer`
+<img width="1639" alt="Screenshot 2023-03-05 at 6 49 23 PM" src="https://user-images.githubusercontent.com/3261849/222996567-4967be7c-68be-4e58-9538-6b5d9bb8649d.png">
+
+
 `hackGPT enabled Siri` 
 <img width="1464" alt="Screenshot 2023-03-05 at 7 36 26 AM" src="https://user-images.githubusercontent.com/3261849/222963874-096f2add-ffa9-40be-a7f2-8c604cf5e3b2.png">
 
