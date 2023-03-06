@@ -25,6 +25,12 @@ import csv
 import datetime
 import argparse
 import inquirer
+import webbrowser
+from prettytable.colortable import ColorTable, Themes
+from prettytable import from_csv
+
+
+
 # Load API key from an environment variable or secret management service
 
 load_dotenv(".env")
@@ -187,16 +193,16 @@ def add_text(state, text):
         stop=["\"\"\""]
         )
     response = response['choices'][0]['text']
-        
     state = state + [(str(response),str(text))]
-    try:
+
+    try: 
         with open('output/chat_hackGPT_log.csv', 'a+', encoding='UTF8', newline='') as f:
             w = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             w.writerow([date_string, hackgpt_persona, str(text).strip('\n'), str(response).lstrip('\n')])
             f.close()
+
     finally:
         return state, state
-
 def add_file(file_state, file):
     with open(file.name, 'r') as targets:
         search = targets.read()
@@ -223,7 +229,6 @@ def add_file(file_state, file):
         return file_state, file_state
             
 
-
 with gr.Blocks(css="#chatbot .output::-webkit-scrollbar {display: none;}") as hackerchat:
     state = gr.State([])
     chatbot = gr.Chatbot().style( color_map=("black", "green"))
@@ -237,6 +242,16 @@ with gr.Blocks(css="#chatbot .output::-webkit-scrollbar {display: none;}") as ha
     txt.submit(add_text, [state, txt], [ chatbot, state])
     txt.submit(lambda :"", None, txt)
     btn.upload(add_file, [state, btn], [state, chatbot])
-     
+
+webbrowser.open("http://127.0.0.1:1337") 
+#subprocess.call(["sort", "-h output/chat_hackGPT_log.csv", "|", "res/tools/csv_hack", "|", "lolcat -p 23"])
+#------------------------------------ results sample ------------------------------------        
+with open('output/chat_hackGPT_log.csv', 'r', encoding='UTF8') as f:
+    t = from_csv(f)
+    t._max_width = {"Date" : 10, "Persona" : 8, "Query" : 8, "Response" : 48}
+    print(fade.purplepink(str(t)))
+        
 if __name__ == "__main__":
-    hackerchat.launch(height=1000, quiet=True, favicon_path="res/hackgpt_fav.png")
+    hackerchat.launch(height=1000, quiet=True, favicon_path="res/hackgpt_fav.png", server_port=1337)
+
+
