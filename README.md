@@ -12,6 +12,10 @@ https://user-images.githubusercontent.com/3261849/222942128-3f75b9b7-5763-4a0c-a
 `hackGPT enabled Siri` 
 <img width="1464" alt="Screenshot 2023-03-05 at 7 36 26 AM" src="https://user-images.githubusercontent.com/3261849/222963874-096f2add-ffa9-40be-a7f2-8c604cf5e3b2.png">
 
+`hackGPT being superduper wrong`
+<img width="1663" alt="Nope" src="https://user-images.githubusercontent.com/3261849/223754401-e2caea7f-b4ff-452b-851e-2c3ab07c0192.png">
+
+
 `Launch hackGPT with Google Colab(colab.research.google.com):` 
 
 https://user-images.githubusercontent.com/3261849/218538303-68c06a8e-071b-40a2-b7b2-b9e974b41f09.mp4
