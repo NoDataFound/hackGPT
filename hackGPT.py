@@ -231,7 +231,7 @@ def add_file(file_state, file):
 
 with gr.Blocks(css="#chatbot .output::-webkit-scrollbar {display: none;}") as hackerchat:
     state = gr.State([])
-    chatbot = gr.Chatbot().style( color_map=("black", "green"))
+    chatbot = gr.Chatbot()
 
     with gr.Row():
         with gr.Column(scale=0.85):
