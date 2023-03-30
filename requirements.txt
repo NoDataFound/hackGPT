@@ -8,3 +8,4 @@ gradio
 ipywidgets
 inquirer
 prettytable
+jira
