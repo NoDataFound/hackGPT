@@ -1,5 +1,13 @@
 ![](https://img.shields.io/badge/hackGPT-v23-purple)
 
+`Hunt for JIRA issues using type=bug, fix issue and commit fix back to ticket as comment ` 
+
+
+https://user-images.githubusercontent.com/3261849/228703126-adf614ba-d931-4ec0-8d1a-99654063058b.mp4
+
+<img width="1678" alt="Screenshot 2023-03-29 at 8 05 29 PM" src="https://user-images.githubusercontent.com/3261849/228703250-74cd7ed4-114f-46f5-b4ef-f6644fb5eea4.png">
+
+
 
 `Launch hackGPT with python` 
 
