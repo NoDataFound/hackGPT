@@ -1,4 +1,5 @@
 ![](https://img.shields.io/badge/hackGPT-v23-purple)
+<img width="1624" alt="Screenshot 2023-04-24 at 8 41 52 PM" src="https://user-images.githubusercontent.com/3261849/234341399-f79b9ca3-e829-4831-8e67-e75e8840adfd.png">
 
 `Hunt for JIRA issues using type=bug, fix issue and commit fix back to ticket as comment ` 
 
