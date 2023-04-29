@@ -1,0 +1,11 @@
+directory_structure
+alive_progress
+fade
+python-dotenv
+pathlib
+openai
+gradio
+ipywidgets
+inquirer
+prettytable
+jira

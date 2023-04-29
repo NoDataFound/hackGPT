@@ -1,0 +1,8 @@
+[data-testid=metric-container] {
+    box-shadow: 0 0 3px #cccccc;
+    padding: 10px;
+}
+
+.plot-container>div {
+    box-shadow: 0 0 3px #cccccc;
+}
