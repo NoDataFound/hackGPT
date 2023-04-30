@@ -10,16 +10,21 @@ import os
 import csv
 import openai
 import time
-
-load_dotenv('.env')
-openai.api_key = os.environ.get('OPENAI_API_KEY')
-
-if not openai.api_key:
-    openai.api_key = st.text_input("Enter OPENAI_API_KEY API key")
-    set_key('.env', 'OPENAI_API_KEY', openai.api_key)
-
-os.environ['OPENAI_API_KEY'] = openai.api_key
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
+
+st.write("Please enter your OpenAI API key below.")
+openai_api_key = st.text_input("OpenAI API key", type="password")
+
+if openai_api_key:
+    try:
+        openai.api_key = openai_api_key
+
+        models = openai.Model.list()
+        st.write("Authentication successful!")
+    except:
+        st.write("Invalid API key. Please try again.")
+
+
 st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
 logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
