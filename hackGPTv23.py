@@ -12,19 +12,25 @@ import openai
 import time
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
+# Retrieve the user's OpenAI API key
 user_api_key = st.secrets.get("openai_api_key")
 
+# If the user hasn't entered their API key yet, prompt them to enter it
 if not user_api_key:
     st.write("Please enter your OpenAI API key below.")
     user_api_key = st.text_input("OpenAI API key", type="password")
     
+    # If the user has entered an API key, store it in the app's state
     if user_api_key:
-        st.secrets["openai_api_key"] = user_api_key
+        st.session_state.openai_api_key = user_api_key
 
-if user_api_key:
+# Authenticate with the OpenAI API using the user's API key
+if st.session_state.get("openai_api_key"):
     try:
-        openai.api_key = user_api_key
+        # Set the user's API key
+        openai.api_key = st.session_state.openai_api_key
 
+        # Test the API connection
         models = openai.Model.list()
         st.write("Authentication successful!")
     except:
