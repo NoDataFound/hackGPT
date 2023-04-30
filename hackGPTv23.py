@@ -12,14 +12,14 @@ import openai
 import time
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
-user_api_key = st.secrets["openai"]["api_key"]
+user_api_key = st.secrets.get("openai_api_key")
 
 if not user_api_key:
     st.write("Please enter your OpenAI API key below.")
     user_api_key = st.text_input("OpenAI API key", type="password")
     
     if user_api_key:
-        st.secrets["openai"] = {"api_key": user_api_key}
+        st.secrets["openai_api_key"] = user_api_key
 
 if user_api_key:
     try:
@@ -29,7 +29,6 @@ if user_api_key:
         st.write("Authentication successful!")
     except:
         st.write("Invalid API key. Please try again.")
-
 
 st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
 logo_col, text_col = st.sidebar.columns([1, 3])
