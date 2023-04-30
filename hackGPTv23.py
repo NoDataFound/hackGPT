@@ -163,21 +163,21 @@ def add_text(text_input):
 st.sidebar.header("File Upload")
 file = st.sidebar.file_uploader("Upload file", type=["txt"])
 
-if file is not None:
-    line_by_line = st.sidebar.checkbox("Process line by line")
-    max_length = 2000
-    text = file.read().decode("utf-8")
-    if line_by_line:
-        for line in text.split("\n"):
-            st.write(f"Input: {line}")
-            response = get_ai_response(line)
-            st.write(f"Output: {response}")
-    else:
-        chunks = chunk_text(text, max_length)
-        for chunk in chunks:
-            st.write(f"Input: {chunk}")
-            response = add_text(chunk)
-            st.write(f"Output: {response}")   
+#if file is not None:
+#    line_by_line = st.sidebar.checkbox("Process line by line")
+#    max_length = 2000
+#    text = file.read().decode("utf-8")
+#    if line_by_line:
+#        for line in text.split("\n"):
+#            st.write(f"Input: {line}")
+#            response = get_ai_response(line)
+#            st.write(f"Output: {response}")
+#    else:
+#        chunks = chunk_text(text, max_length)
+#        for chunk in chunks:
+#            st.write(f"Input: {chunk}")
+#            response = add_text(chunk)
+#            st.write(f"Output: {response}")   
 
 user_css = """
     <style>
