@@ -39,7 +39,7 @@ if st.session_state.get("openai_api_key"):
 else:
     st.write("Authentication successful!")
 
-st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', max_width=1000)
+st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
 logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
 text_col.write('<div style="text-align: left;">hackGPT Chatbot</div>', unsafe_allow_html=True)
