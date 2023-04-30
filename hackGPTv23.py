@@ -12,6 +12,7 @@ import openai
 import time
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
+
 # Retrieve the user's OpenAI API key
 user_api_key = st.secrets.get("openai_api_key")
 
@@ -35,8 +36,10 @@ if st.session_state.get("openai_api_key"):
         st.write("Authentication successful!")
     except:
         st.write("Invalid API key. Please try again.")
+else:
+    st.write("Authentication successful!")
 
-st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
+st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', max_width=2000)
 logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
 text_col.write('<div style="text-align: left;">hackGPT Chatbot</div>', unsafe_allow_html=True)
