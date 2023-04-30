@@ -10,7 +10,6 @@ import os
 import csv
 import openai
 import time
-st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
 load_dotenv('.env')
 openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -20,6 +19,7 @@ if not openai.api_key:
     set_key('.env', 'OPENAI_API_KEY', openai.api_key)
 
 os.environ['OPENAI_API_KEY'] = openai.api_key
+st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
 logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
@@ -50,7 +50,19 @@ new_row = pd.DataFrame({"act": [" "], "prompt": [""]})
 data = pd.concat([data, new_row], ignore_index=True)
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 
-
+def chunk_text(text, max_length):
+    chunks = []
+    words = text.split()
+    chunk = ""
+    for word in words:
+        if len(chunk) + len(word) + 1 <= max_length:
+            chunk += " " + word
+        else:
+            chunks.append(chunk)
+            chunk = word
+    if chunk:
+        chunks.append(chunk)
+    return chunks
 
 
 
@@ -148,7 +160,24 @@ def add_text(text_input):
         stop=["\"\"\""]
         )
     return response['choices'][0]['text']
-    
+st.sidebar.header("File Upload")
+file = st.sidebar.file_uploader("Upload file", type=["txt"])
+
+if file is not None:
+    line_by_line = st.sidebar.checkbox("Process line by line")
+    max_length = 2000
+    text = file.read().decode("utf-8")
+    if line_by_line:
+        for line in text.split("\n"):
+            st.write(f"Input: {line}")
+            response = get_ai_response(line)
+            st.write(f"Output: {response}")
+    else:
+        chunks = chunk_text(text, max_length)
+        for chunk in chunks:
+            st.write(f"Input: {chunk}")
+            response = add_text(chunk)
+            st.write(f"Output: {response}")   
 
 user_css = """
     <style>
