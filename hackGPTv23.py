@@ -50,19 +50,19 @@ new_row = pd.DataFrame({"act": [" "], "prompt": [""]})
 data = pd.concat([data, new_row], ignore_index=True)
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 
-def chunk_text(text, max_length):
-    chunks = []
-    words = text.split()
-    chunk = ""
-    for word in words:
-        if len(chunk) + len(word) + 1 <= max_length:
-            chunk += " " + word
-        else:
-            chunks.append(chunk)
-            chunk = word
-    if chunk:
-        chunks.append(chunk)
-    return chunks
+#def chunk_text(text, max_length):
+#    chunks = []
+#    words = text.split()
+#    chunk = ""
+#    for word in words:
+#        if len(chunk) + len(word) + 1 <= max_length:
+#            chunk += " " + word
+#        else:
+#            chunks.append(chunk)
+#            chunk = word
+#    if chunk:
+#        chunks.append(chunk)
+#    return chunks
 
 
 
