@@ -12,33 +12,14 @@ import openai
 import time
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
+load_dotenv('.env')
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
-# Retrieve the user's OpenAI API key
-user_api_key = st.secrets.get("openai_api_key")
+if not openai.api_key:
+    openai.api_key = st.text_input("Enter OPENAI_API_KEY API key")
+    set_key('.env', 'OPENAI_API_KEY', openai.api_key)
 
-# If the user hasn't entered their API key yet, prompt them to enter it
-if not user_api_key:
-    st.write("Please enter your OpenAI API key below.")
-    user_api_key = st.text_input("OpenAI API key", type="password")
-    
-    # If the user has entered an API key, store it in the app's state
-    if user_api_key:
-        st.session_state.openai_api_key = user_api_key
-
-# Authenticate with the OpenAI API using the user's API key
-if st.session_state.get("openai_api_key"):
-    try:
-        # Set the user's API key
-        openai.api_key = st.session_state.openai_api_key
-
-        # Test the API connection
-        models = openai.Model.list()
-        st.write("Authentication successful!")
-    except:
-        st.write("Invalid API key. Please try again.")
-else:
-    st.write("Authentication successful!")
-
+os.environ['OPENAI_API_KEY'] = openai.api_key
 st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
 logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
