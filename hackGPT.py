@@ -32,14 +32,13 @@ from prettytable import from_csv
 
 
 # Load API key from an environment variable or secret management service
-
 load_dotenv(".env")
 apiToken = os.environ.get('OPENAI_TOKEN')
 openai.api_key = apiToken
-
 if 'OPENAI_TOKEN' in os.environ:
    pass
 else:
+  # If API key is not found, prompt user to enter it
   error='''           
                      *   )           )            (   
                      `(     ( /((        (  (      )\   
@@ -72,6 +71,7 @@ date_string = datetime.datetime.now()
 
 load_dotenv()  
 apiToken = os.environ.get("OPENAI_TOKEN")
+# Add headers to API requests containing our OpenAI API key
 headers = {
                     "Accept": "application/json; charset=utf-8",
                     "Authorization": "Token" + str(apiToken)
@@ -126,7 +126,7 @@ fadedgpt = fade.random(gpt)
 for pair in zip(*map(str.splitlines, (fadedhack, fadedgpt))): 
   print(*pair)                                                                                                
 #------------------------------------ main menu prompt  ------------------------------------ 
-
+# Open the hackGPT_log file and create a new row for Date, Persona, Query, and Response
 with open('output/chat_hackGPT_log.csv', 'a+', encoding='UTF8', newline='') as f:
     w = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     w.writerow(['Date', 'Persona', 'Query', 'Response'])
@@ -140,7 +140,7 @@ questions = [
 
 answers = inquirer.prompt(questions)
 hackgpt_persona = answers['Persona']
-
+# Checks the value of hackgpt_persona and selects the corresponding persona text file to read
 if hackgpt_persona =='hackGPT':
     hackGPT_mode = open('personas/hackGPTv1.md' ,"r")
     hackGPT_mode = hackGPT_mode.read()
@@ -181,10 +181,12 @@ elif hackgpt_persona =='DAN':
 #                w.writerow([date_string, hackgpt_persona, str(line).strip('\n'), str(response).lstrip('\n')])
 #                f.close()
 #
+# Function to add user input text to the chatbot
 def add_text(state, text):
+    # Create a response using OpenAI GPT-3 language model
     response = openai.Completion.create(
         model="text-davinci-003",
-        prompt=str(hackGPT_mode) + str(text),
+        prompt=f"{hackGPT_mode}{text}",
         temperature=0,
         max_tokens=3000,
         top_p=1,
@@ -192,17 +194,22 @@ def add_text(state, text):
         presence_penalty=0,
         stop=["\"\"\""]
         )
+    # Extract response text from the response object
     response = response['choices'][0]['text']
+    # Add the user input text and generated response to the state variable
     state = state + [(str(response),str(text))]
 
-    try: 
+    try:
+        # Append the user input text and generated response to the chat log CSV file
         with open('output/chat_hackGPT_log.csv', 'a+', encoding='UTF8', newline='') as f:
             w = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             w.writerow([date_string, hackgpt_persona, str(text).strip('\n'), str(response).lstrip('\n')])
             f.close()
 
     finally:
+        # Return the updated state variable
         return state, state
+# Function to add a file to the chatbot
 def add_file(file_state, file):
     with open(file.name, 'r') as targets:
         search = targets.read()
@@ -218,8 +225,10 @@ def add_file(file_state, file):
             )
         
     file_response = response['choices'][0]['text']
-    file_state = file_state + [("" + str(file_response), "Processed file: "+ str(file.name))]
+    # Add the file name and generated response to the file state variable
+    file_state = file_state + [(f"" + str(file_response), f"Processed file: {file.name}")]
     try:
+        # Append the file name and generated response to the file log CSV file
         with open('output/chat_hackGPT_file_log.csv', 'a+', encoding='UTF8', newline='') as f:
             w = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             w.writerow([date_string, hackgpt_persona, str(search).strip('\n'), str(response).lstrip('\n')])
@@ -228,7 +237,7 @@ def add_file(file_state, file):
     finally:
         return file_state, file_state
             
-
+# Set up the chatbot interface
 with gr.Blocks(css="#chatbot .output::-webkit-scrollbar {display: none;}") as hackerchat:
     state = gr.State([])
     chatbot = gr.Chatbot()
@@ -242,7 +251,7 @@ with gr.Blocks(css="#chatbot .output::-webkit-scrollbar {display: none;}") as ha
     txt.submit(add_text, [state, txt], [ chatbot, state])
     txt.submit(lambda :"", None, txt)
     btn.upload(add_file, [state, btn], [state, chatbot])
-
+# Open the chatbot in a web browser
 webbrowser.open("http://127.0.0.1:1337") 
 #subprocess.call(["sort", "-h output/chat_hackGPT_log.csv", "|", "res/tools/csv_hack", "|", "lolcat -p 23"])
 #------------------------------------ results sample ------------------------------------        
