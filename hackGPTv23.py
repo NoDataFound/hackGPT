@@ -10,6 +10,8 @@ import os
 import csv
 import openai
 import time
+import altair as alt
+
 
 load_dotenv('.env')
 openai.api_key = os.environ.get('OPENAI_API_KEY')
@@ -20,28 +22,32 @@ if not openai.api_key:
 
 os.environ['OPENAI_API_KEY'] = openai.api_key
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
-st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=1000)
-logo_col, text_col = st.sidebar.columns([1, 3])
-logo_col.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png', width=48)
-text_col.write('<div style="text-align: left;">hackGPT Chatbot</div>', unsafe_allow_html=True)
+# Define the chat history data as a Pandas DataFrame
 
+CSS = """
+img {
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+}
+"""
+
+st.markdown(f'<style>{CSS}</style>', unsafe_allow_html=True)
+st.sidebar.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=350)
 #Persona Setup
 def get_persona_files():
     return [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".md")]
 persona_files = get_persona_files()
-selected_persona = st.sidebar.selectbox("👤 Select Local Persona", ["None"] + persona_files)
+selected_persona = st.sidebar.selectbox("👤 𝖲𝖾𝗅𝖾𝖼𝗍 𝖫𝗈𝖼𝖺𝗅 𝖯𝖾𝗋𝗌𝗈𝗇𝖺", ["None"] + persona_files)
 persona_files = [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".md")]
 
 
 # OpenAI setup
 MODEL = st.sidebar.selectbox(label='Model', options=['gpt-3.5-turbo','gpt-3.5-turbo-0301','gpt-4','gpt-4-0314','text-davinci-003','text-davinci-002','text-davinci-edit-001','code-davinci-edit-001'])
-#MODEL = st.sidebar.selectbox(label='Model', options=['gpt-3.5-turbo','gpt-3.5-turbo-0301','gpt-4','gpt-4-0314'])
 
 default_temperature = 1.0
 temperature = st.sidebar.slider(
-    "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
+    "𝗧𝗲𝗺𝗽𝗲𝗿𝗮𝘁𝘂𝗿𝗲 | 𝗖𝗿𝗲𝗮𝘁𝗶𝘃𝗲 <𝟬.𝟱", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
-max_tokens = st.sidebar.slider("Max tokens", 10, 200, 150)
+max_tokens = st.sidebar.slider("𝗠𝗔𝗫 𝗢𝗨𝗧𝗣𝗨𝗧 𝗧𝗢𝗞𝗘𝗡𝗦", 10, 200, 2300)
 
 #Prompt Setups
 url = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
@@ -50,19 +56,6 @@ new_row = pd.DataFrame({"act": [" "], "prompt": [""]})
 data = pd.concat([data, new_row], ignore_index=True)
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 
-def chunk_text(text, max_length):
-    chunks = []
-    words = text.split()
-    chunk = ""
-    for word in words:
-        if len(chunk) + len(word) + 1 <= max_length:
-            chunk += " " + word
-        else:
-            chunks.append(chunk)
-            chunk = word
-    if chunk:
-        chunks.append(chunk)
-    return chunks
 
 
 
@@ -160,24 +153,43 @@ def add_text(text_input):
         stop=["\"\"\""]
         )
     return response['choices'][0]['text']
-st.sidebar.header("File Upload")
-file = st.sidebar.file_uploader("Upload file", type=["txt"])
 
-if file is not None:
-    line_by_line = st.sidebar.checkbox("Process line by line")
-    max_length = 2000
-    text = file.read().decode("utf-8")
-    if line_by_line:
-        for line in text.split("\n"):
-            st.write(f"Input: {line}")
-            response = get_ai_response(line)
-            st.write(f"Output: {response}")
-    else:
-        chunks = chunk_text(text, max_length)
-        for chunk in chunks:
-            st.write(f"Input: {chunk}")
-            response = add_text(chunk)
-            st.write(f"Output: {response}")   
+try:
+    if st.session_state.chat_history == 0 :
+        col1, col2, col3 ,col4 = st.columns(4)
+        col1.metric("Persona", selected_persona,selected_persona ) 
+        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
+        col3.metric("Model", MODEL)
+        col4.metric("Model Count", len(MODEL), len(MODEL))
+    elif st.session_state.chat_history != 0 :
+        col1, col2, col3 ,col4, col5 = st.columns(5)
+        col1.metric("Persona", selected_persona,selected_persona ) 
+        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
+        col3.metric("Model", MODEL)
+        col4.metric("Model Count", len(MODEL), len(MODEL))
+        col5.metric("Messages", len(st.session_state.chat_history), len(st.session_state.chat_history))
+except:
+    pass
+   
+
+#st.sidebar.header("File Upload")
+file = st.sidebar.file_uploader("", type=["txt"])
+
+#if file is not None:
+#    line_by_line = st.sidebar.checkbox("Process line by line")
+#    max_length = 2000
+#    text = file.read().decode("utf-8")
+#    if line_by_line:
+#        for line in text.split("\n"):
+#            st.write(f"Input: {line}")
+#            response = get_ai_response(line)
+#            st.write(f"Output: {response}")
+#    else:
+#        chunks = chunk_text(text, max_length)
+#        for chunk in chunks:
+#            st.write(f"Input: {chunk}")
+#            response = add_text(chunk)
+#            st.write(f"Output: {response}")   
 
 user_css = """
     <style>
@@ -188,13 +200,10 @@ user_css = """
         margin-bottom: 1px;
         border: 1px solid #e90ce4;
         width: 100%;
+        height: 100%; /* Set the height to a fixed value */
+        overflow-y: scroll; /* Add a scrollbar if necessary */
         }
-        .scrollable-container {
-            max-height: 70vh;
-            overflow-y: auto;
-            padding-right: 1rem;
-            max-width: 800px; /* Increase the max-width to display longer messages */
-        }
+        
     </style>
 """
 
@@ -207,6 +216,9 @@ ai_css = """
         margin-bottom: 1px;
         border: 1px solid #0ab5e0;
         width: 100%;
+        overflow-x: scroll; /* Set the x to a fixed value */
+        height: 100%; /* Set the height to a fixed value */
+        overflow-y: scroll; /* Add a scrollbar if necessary */
         }
     </style>
 """
@@ -218,7 +230,9 @@ model_css = """
             padding: 1px;
             border-radius: 5px;
             margin-bottom: 5px;
-            width: 100%;
+            width: 100%; 
+            height: 100%; /* Set the height to a fixed value */
+            overflow-y: scroll; /* Add a scrollbar if necessary */
         }
     </style>
 """
@@ -265,13 +279,15 @@ elif MODEL != 'gpt-3.5-turbo' or MODEL != 'gpt-4' or MODEL != 'gpt-3.5-turbo-030
     if text_input:
         ai_responses = add_text(text_input)
         st.session_state.chat_history.append(('ai', f"{ai_responses}"))
-        st.session_state.chat_history.append(('ai', f"{line}"))
+        #st.session_state.chat_history.append(('ai', f"{line}"))
         st.session_state.chat_history.append(('persona', f"{selected_persona}"))
         st.session_state.chat_history.append(('user', f"You: {text_input}"))
         st.session_state.chat_history.append(('model', f"{MODEL}"))
 
 
 display_chat_history()
+
+
 
 if st.button("Download Chat History"):
     chat_history_text = "\n".join([text for _, text in st.session_state.chat_history])
