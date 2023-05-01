@@ -1,8 +1,8 @@
 ![](https://img.shields.io/badge/hackGPT-v23-purple)
 
 `Test the app live here:` https://hackgpt.streamlit.app/
+<img width="1681" alt="Screenshot 2023-04-30 at 6 59 28 PM" src="https://user-images.githubusercontent.com/3261849/235382192-714758c2-5117-4c95-851d-eeeb9301221f.png">
 
-<img width="1681" alt="Screenshot 2023-04-30 at 12 20 01 PM" src="https://user-images.githubusercontent.com/3261849/235367075-94d444e6-17a7-4358-a65f-70822b1c4b32.png">
 
 <img width="1681" alt="Screenshot 2023-04-29 at 2 42 41 PM" src="https://user-images.githubusercontent.com/3261849/235321459-35eb1ecb-58b6-4439-9fee-dbc63e13f3e1.png">
 
