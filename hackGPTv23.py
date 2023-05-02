@@ -51,7 +51,7 @@ max_tokens = st.sidebar.slider("𝗠𝗔𝗫 𝗢𝗨𝗧𝗣𝗨𝗧 𝗧𝗢�
 
 #Prompt Setups
 url = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
-jailbreaks = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/jailbreaks.csv
+jailbreaks = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/jailbreaks.csv"
 data = pd.read_csv(url)
 new_row = pd.DataFrame({"act": [" "], "prompt": [""]})
 data = pd.concat([data, new_row], ignore_index=True)
@@ -97,11 +97,11 @@ with expand_section:
                 f.write(selected_prompt)
 expand_section = st.sidebar.expander("🏴‍☠️ Jailbreaks", expanded=False)
 with expand_section:
-    selected_act = st.selectbox('', data['hacker'])
+    selected_act = st.selectbox('', jailbreakdata['hacker'])
     show_remote_prompts = st.checkbox("Show jailbreak options")
     if selected_act and selected_act.strip():
-        selected_prompt = data.loc[data['act'] == selected_act, 'text'].values[0]
-        confirm = st.button("Save Selected Persona")
+        selected_prompt = data.loc[jailbreakdata['hacker'] == selected_act, 'text'].values[0]
+        confirm = st.button("Save Selected Jailbreak")
         if confirm:
             if not os.path.exists("personas"):
                 os.mkdir("personas")
