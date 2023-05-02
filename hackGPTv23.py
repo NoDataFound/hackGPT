@@ -113,7 +113,7 @@ with expand_section:
 
 expand_section = st.sidebar.expander("➕ Add new Persona", expanded=False)
 if show_hack_prompts:
-    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
+    st.write(jailbreakdata[['hacker', 'text']].style.hide(axis="index").set_properties(subset='prompt', **{
         'max-width': '100%',
         'white-space': 'pre-wrap'
     }))
