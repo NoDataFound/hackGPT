@@ -55,7 +55,7 @@ persona_files = get_persona_files()
 
 #scenario = st.sidebar.selectbox("Scenarios", ["Default", "Jira Bug Hunter"])
 
-selected_persona = st.sidebar.selectbox("👤 Select Local Persona", [""] + persona_files)
+selected_persona = st.sidebar.selectbox("👪 Select Parent", ["Parent of 13 year old"] + persona_files)
 
 default_temperature = 1.0
 temperature = st.sidebar.slider(
