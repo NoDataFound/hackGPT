@@ -51,12 +51,15 @@ max_tokens = st.sidebar.slider("𝗠𝗔𝗫 𝗢𝗨𝗧𝗣𝗨𝗧 𝗧𝗢�
 
 #Prompt Setups
 url = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
+jailbreaks = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/jailbreaks.csv
 data = pd.read_csv(url)
 new_row = pd.DataFrame({"act": [" "], "prompt": [""]})
 data = pd.concat([data, new_row], ignore_index=True)
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 
-
+jailbreakdata = pd.read_csv(jailbreaks)
+jailbreaknew_row = pd.DataFrame({"hacker": [" "], "text": [""]})
+jailbreakdata = pd.concat([data, new_row], ignore_index=True)
 
 
 
@@ -86,6 +89,18 @@ with expand_section:
     show_remote_prompts = st.checkbox("Show remote prompt options")
     if selected_act and selected_act.strip():
         selected_prompt = data.loc[data['act'] == selected_act, 'prompt'].values[0]
+        confirm = st.button("Save Selected Persona")
+        if confirm:
+            if not os.path.exists("personas"):
+                os.mkdir("personas")
+            with open(os.path.join("personas", f"{selected_act}_remote.md"), "w") as f:
+                f.write(selected_prompt)
+expand_section = st.sidebar.expander("🏴‍☠️ Jailbreaks", expanded=False)
+with expand_section:
+    selected_act = st.selectbox('', data['hacker'])
+    show_remote_prompts = st.checkbox("Show jailbreak options")
+    if selected_act and selected_act.strip():
+        selected_prompt = data.loc[data['act'] == selected_act, 'text'].values[0]
         confirm = st.button("Save Selected Persona")
         if confirm:
             if not os.path.exists("personas"):
@@ -156,18 +171,21 @@ def add_text(text_input):
 
 try:
     if st.session_state.chat_history == 0 :
-        col1, col2, col3 ,col4 = st.columns(4)
-        col1.metric("Persona", selected_persona,selected_persona ) 
-        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
-        col3.metric("Model", MODEL)
-        col4.metric("Model Count", len(MODEL), len(MODEL))
-    elif st.session_state.chat_history != 0 :
         col1, col2, col3 ,col4, col5 = st.columns(5)
         col1.metric("Persona", selected_persona,selected_persona ) 
-        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
-        col3.metric("Model", MODEL)
-        col4.metric("Model Count", len(MODEL), len(MODEL))
-        col5.metric("Messages", len(st.session_state.chat_history), len(st.session_state.chat_history))
+        col2.metric("Persona Count", len(persona_files),len(persona_files) ) 
+        col3.metric("Jailbreaks", len(jailbreakdata), len(jailbreakdata))
+        col4.metric("Model", MODEL)
+        col5.metric("Model Count", len(MODEL), len(MODEL))
+        
+    elif st.session_state.chat_history != 0 :
+        col1, col2, col3 ,col4, col5, col6 = st.columns(6)
+        col1.metric("Persona", selected_persona,selected_persona ) 
+        col2.metric("Persona Count", len(persona_files),len(persona_files) )
+        col3.metric("Jailbreaks", len(jailbreakdata), len(jailbreakdata))
+        col4.metric("Model", MODEL)
+        col5.metric("Model Count", len(MODEL), len(MODEL))
+        col6.metric("Messages", len(st.session_state.chat_history), len(st.session_state.chat_history))
 except:
     pass
    
