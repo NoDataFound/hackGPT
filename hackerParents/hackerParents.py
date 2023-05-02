@@ -156,7 +156,7 @@ if user_input and selected_persona:
         max_tokens=1024,
         n=1,
         stop=None,
-        temperature=temperature,
+        temperature=1.0,
     )
     results = completions.choices[0].text.strip()
     chat_history.append((selected_persona, results))
