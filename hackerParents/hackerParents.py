@@ -28,9 +28,14 @@ st.text("powered by:")
 st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=600)
 st.markdown("---")
 
-logo_col, text_col = st.sidebar.columns([1, 3])
-logo_col.image('https://seeklogo.com/images/O/open-ai-logo-8B9BFEDC26-seeklogo.com.png', width=32)
-text_col.write('<div style="text-align: left;">OpenAI analysis of results</div>', unsafe_allow_html=True)
+CSS = """
+img {
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+}
+"""
+
+st.markdown(f'<style>{CSS}</style>', unsafe_allow_html=True)
+st.sidebar.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=350)
 def get_persona_files():
     return [f.split(".")[0] for f in os.listdir("hackerParents/parent_persona") if f.endswith(".md")]
 persona_files = get_persona_files()
