@@ -24,9 +24,22 @@ os.environ['OPENAI_API_KEY'] = openai.api_key
 
 st.set_page_config(page_title="𝚑𝚊𝚌𝚔🅶🅿🆃", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 st.header("Welcome to 𝚑𝚊𝚌𝚔𝚎𝚛🅿🅰🆁🅴🅽🆃🆂")
-st.text("powered by:")
-st.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=600)
-st.markdown("---")
+try:
+    if st.session_state.chat_history == 0 :
+        col1, col2, col3 ,col4 = st.columns(4)
+        col1.metric("Persona", selected_persona,selected_persona ) 
+        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
+        col3.metric("Model", MODEL)
+        col4.metric("Model Count", len(MODEL), len(MODEL))
+    elif st.session_state.chat_history != 0 :
+        col1, col2, col3 ,col4, col5 = st.columns(5)
+        col1.metric("Persona", selected_persona,selected_persona ) 
+        col2.metric("Persona Count", len(persona_files),len(persona_files) )  
+        col3.metric("Model", MODEL)
+        col4.metric("Model Count", len(MODEL), len(MODEL))
+        col5.metric("Messages", len(st.session_state.chat_history), len(st.session_state.chat_history))
+except:
+    pass
 
 CSS = """
 img {
