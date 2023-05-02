@@ -148,7 +148,7 @@ if selected_persona:
     with open(os.path.join("hackerParents/parent_persona", f"{selected_persona}.md"), "r") as f:
         persona_text = f.read()
     #st.text("Press Enter/Return to send text")
-user_input = st.text_input("User: ", label_visibility="hidden", placeholder="🤖 Welcome to hackerParents! How can I help?...")
+user_input = st.text_input("User: ", label_visibility="hidden", placeholder="🤖 Welcome to hackerParents! Just ask 'Can my child have an account...")
 chat_history = []
 
 if user_input and selected_persona:
