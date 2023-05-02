@@ -84,6 +84,11 @@ with expand_section:
                 persona_files.remove(selected_persona)
                 selected_persona = ""
 expand_section = st.sidebar.expander("🥷 Import Remote Persona", expanded=False)
+if show_remote_prompts:
+    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
+        'max-width': '100%',
+        'white-space': 'pre-wrap'
+    }))
 with expand_section:
     selected_act = st.selectbox('', data['act'])
     show_remote_prompts = st.checkbox("Show remote prompt options")
@@ -97,11 +102,7 @@ with expand_section:
                 f.write(selected_prompt)
 
 expand_section = st.sidebar.expander("🏴‍☠️ Jailbreaks", expanded=False)
-if show_remote_prompts:
-    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
-        'max-width': '100%',
-        'white-space': 'pre-wrap'
-    }))
+
 with expand_section:
     selected_hacker = st.selectbox('', jailbreakdata['hacker'])
     show_hack_prompts = st.checkbox("Show jailbreak options")
