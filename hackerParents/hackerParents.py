@@ -77,7 +77,7 @@ privacy_link = data['Privacy Policy Link']
 options = st.multiselect(
     '**Select the services to check:**',
     options=social_media,
-    default=social_media['TikTok'],
+    default='TikTok',
     key='social_media'
 )
 #if query:
