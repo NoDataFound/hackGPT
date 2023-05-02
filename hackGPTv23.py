@@ -98,15 +98,15 @@ with expand_section:
 expand_section = st.sidebar.expander("🏴‍☠️ Jailbreaks", expanded=False)
 with expand_section:
     selected_hacker = st.selectbox('', jailbreakdata['hacker'])
-    show_remote_prompts = st.checkbox("Show jailbreak options")
+    show_hack_prompts = st.checkbox("Show jailbreak options")
     if selected_hacker and selected_hacker.strip():
-        selected_prompt = jailbreakdata.loc[jailbreakdata['hacker'] == selected_act, 'text'].values[0]
+        selected_jailbreak_prompt = jailbreakdata.loc[jailbreakdata['hacker'] == selected_hacker, 'text'].values[0]
         confirm = st.button("Save Selected Jailbreak")
         if confirm:
             if not os.path.exists("personas"):
                 os.mkdir("personas")
-            with open(os.path.join("personas", f"{selected_act}_remote.md"), "w") as f:
-                f.write(selected_prompt)
+            with open(os.path.join("personas", f"{selected_hacker}_remote.md"), "w") as f:
+                f.write(selected_jailbreak_prompt)
 expand_section = st.sidebar.expander("➕ Add new Persona", expanded=False)
 if show_remote_prompts:
     st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
