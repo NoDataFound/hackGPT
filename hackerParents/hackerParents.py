@@ -65,7 +65,7 @@ options = st.multiselect(
 #if query:
 #    data = data[data['prompt'].str.contains(query, case=False)]
 
-persona_files = [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".txt")]
+persona_files = [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".md")]
 
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 with expand_section:
