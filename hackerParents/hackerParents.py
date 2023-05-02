@@ -60,8 +60,8 @@ data = pd.concat([data, new_row], ignore_index=True)
 social_media = data['Social Media']
 privacy_link = data['Privacy Policy Link']
 col1, col2, col3 = st.columns(3)
-col1.metric("Persona", selected_persona,selected_persona ) 
-col2.metric("Persona Count", len(persona_files),len(persona_files) )
+col1.metric("Current Parent", selected_persona,selected_persona ) 
+col2.metric("Parents Available", len(persona_files),len(persona_files) )
 col3.metric("Social Media Services", len(data),len(data) )
 # Filter
 options = st.multiselect(
