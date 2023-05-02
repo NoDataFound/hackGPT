@@ -59,7 +59,7 @@ expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 
 jailbreakdata = pd.read_csv(jailbreaks)
 jailbreaknew_row = pd.DataFrame({"hacker": [" "], "text": [""]})
-jailbreakdata = pd.concat([data, new_row], ignore_index=True)
+jailbreakdata = pd.concat([jailbreakdata, jailbreaknew_row], ignore_index=True)
 
 
 
