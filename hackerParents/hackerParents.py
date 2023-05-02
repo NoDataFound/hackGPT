@@ -32,7 +32,7 @@ logo_col, text_col = st.sidebar.columns([1, 3])
 logo_col.image('https://seeklogo.com/images/O/open-ai-logo-8B9BFEDC26-seeklogo.com.png', width=32)
 text_col.write('<div style="text-align: left;">OpenAI analysis of results</div>', unsafe_allow_html=True)
 def get_persona_files():
-    return [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".md")]
+    return [f.split(".")[0] for f in os.listdir("parent_persona") if f.endswith(".md")]
 persona_files = get_persona_files()
 
 #scenario = st.sidebar.selectbox("Scenarios", ["Default", "Jira Bug Hunter"])
@@ -65,27 +65,27 @@ options = st.multiselect(
 #if query:
 #    data = data[data['prompt'].str.contains(query, case=False)]
 
-persona_files = [f.split(".")[0] for f in os.listdir("personas") if f.endswith(".md")]
+persona_files = [f.split(".")[0] for f in os.listdir("parent_persona") if f.endswith(".md")]
 
 expand_section = st.sidebar.expander("👤 Manage Personas", expanded=False)
 with expand_section:
     #st.subheader("👤 Manage Personas")
     if selected_persona:
-        with open(os.path.join("personas", f"{selected_persona}.md"), "r") as f:
+        with open(os.path.join("parent_persona", f"{selected_persona}.md"), "r") as f:
             persona_text = f.read()
         new_persona_name = st.text_input("Persona Name:", value=selected_persona)
         new_persona_prompt = st.text_area("Persona Prompt:", value=persona_text, height=100)
         if new_persona_name != selected_persona or new_persona_prompt != persona_text:
-            with open(os.path.join("personas", f"{new_persona_name}.md"), "w") as f:
+            with open(os.path.join("parent_persona", f"{new_persona_name}.md"), "w") as f:
                 f.write(new_persona_prompt)
             if new_persona_name != selected_persona:
-                os.remove(os.path.join("personas", f"{selected_persona}.md"))
+                os.remove(os.path.join("parent_persona", f"{selected_persona}.md"))
                 persona_files.remove(selected_persona)
                 persona_files.append(new_persona_name)
                 selected_persona = new_persona_name
         if st.button("➖ Delete Persona"):
             if st.warning("Persona Deleted"):
-                os.remove(os.path.join("personas", f"{selected_persona}.md"))
+                os.remove(os.path.join("parent_persona", f"{selected_persona}.md"))
                 persona_files.remove(selected_persona)
                 selected_persona = ""
 expand_section = st.sidebar.expander("🥷 Social Media Sources", expanded=False)
@@ -116,25 +116,25 @@ with expand_section:
     else:
         new_persona_prompt = st.text_area("Persona Prompt:", height=100)
         if new_persona_name and new_persona_prompt:
-            with open(os.path.join("personas", f"{new_persona_name}.md"), "w") as f:
+            with open(os.path.join("parent_persona", f"{new_persona_name}.md"), "w") as f:
                 f.write(new_persona_prompt)
             persona_files.append(new_persona_name)
             selected_persona = new_persona_name
 if selected_persona:
-    with open(os.path.join("personas", f"{selected_persona}.md"), "r") as f:
+    with open(os.path.join("parent_persona", f"{selected_persona}.md"), "r") as f:
         persona_text = f.read()
         #st.text("Press Enter to add")
 
 
 
-    with open(os.path.join("personas", f"{selected_persona}.md"), "r") as f:
+    with open(os.path.join("parent_persona", f"{selected_persona}.md"), "r") as f:
         persona_text = f.read()
     #st.text("Press Enter/Return to send text")
 user_input = st.text_input("User: ", label_visibility="hidden", placeholder="🤖 Welcome to hackerParents! How can I help?...")
 chat_history = []
 
 if user_input and selected_persona:
-    with open(os.path.join("personas", f"{selected_persona}.md"), "r") as f:
+    with open(os.path.join("parent_persona", f"{selected_persona}.md"), "r") as f:
         persona_text = f.read()
     chat_history.append(("You", user_input))
     
