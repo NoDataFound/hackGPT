@@ -113,6 +113,11 @@ if show_remote_prompts:
         'max-width': '100%',
         'white-space': 'pre-wrap'
     }))
+if show_hack_prompts:
+    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
+        'max-width': '100%',
+        'white-space': 'pre-wrap'
+    }))
 with expand_section:
     st.subheader("➕ Add new Persona")
     st.text("Press enter to update/save")
