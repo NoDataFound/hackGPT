@@ -25,9 +25,7 @@ os.environ['OPENAI_API_KEY'] = openai.api_key
 st.set_page_config(page_title="Welcome to 𝚑𝚊𝚌𝚔𝚎𝚛🅿🅰🆁🅴🅽🆃🆂", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 st.header("Welcome to 𝚑𝚊𝚌𝚔𝚎𝚛🅿🅰🆁🅴🅽🆃🆂")
 
-col1, col2 = st.columns(2)
-col1.metric("Persona", selected_persona,selected_persona ) 
-col2.metric("Persona Count", len(persona_files),len(persona_files) )  
+  
 
 
 CSS = """
@@ -51,7 +49,9 @@ temperature = st.sidebar.slider(
     "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
 
-
+col1, col2 = st.columns(2)
+col1.metric("Persona", selected_persona,selected_persona ) 
+col2.metric("Persona Count", len(persona_files),len(persona_files) )
     
 url = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/hackerParents/social_data.csv"
 data = pd.read_csv(url)
