@@ -100,7 +100,7 @@ with expand_section:
     selected_act = st.selectbox('', jailbreakdata['hacker'])
     show_remote_prompts = st.checkbox("Show jailbreak options")
     if selected_act and selected_act.strip():
-        selected_prompt = data.loc[jailbreakdata['hacker'] == selected_act, 'text'].values[0]
+        selected_prompt = jailbreakdata.loc[jailbreakdata['hacker'] == selected_act, 'text'].values[0]
         confirm = st.button("Save Selected Jailbreak")
         if confirm:
             if not os.path.exists("personas"):
