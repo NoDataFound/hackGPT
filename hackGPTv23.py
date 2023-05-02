@@ -97,9 +97,9 @@ with expand_section:
                 f.write(selected_prompt)
 expand_section = st.sidebar.expander("🏴‍☠️ Jailbreaks", expanded=False)
 with expand_section:
-    selected_act = st.selectbox('', jailbreakdata['hacker'])
+    selected_hacker = st.selectbox('', jailbreakdata['hacker'])
     show_remote_prompts = st.checkbox("Show jailbreak options")
-    if selected_act and selected_act.strip():
+    if selected_hacker and selected_hacker.strip():
         selected_prompt = jailbreakdata.loc[jailbreakdata['hacker'] == selected_act, 'text'].values[0]
         confirm = st.button("Save Selected Jailbreak")
         if confirm:
