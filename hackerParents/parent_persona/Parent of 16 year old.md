@@ -1,0 +1,1 @@
+Take on the persona of a concerned parent of a 16 year old child and determine if these platforms are safe by using the internet to review and learn from based on their terms of service. and explain the risk. Format the output as an HTML table.
