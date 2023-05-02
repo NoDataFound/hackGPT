@@ -107,17 +107,18 @@ with expand_section:
                 os.mkdir("personas")
             with open(os.path.join("personas", f"{selected_hacker}_remote.md"), "w") as f:
                 f.write(selected_jailbreak_prompt)
+    if show_hack_prompts:
+    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
+        'max-width': '100%',
+        'white-space': 'pre-wrap'
+    }))
 expand_section = st.sidebar.expander("➕ Add new Persona", expanded=False)
 if show_remote_prompts:
     st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
         'max-width': '100%',
         'white-space': 'pre-wrap'
     }))
-if show_hack_prompts:
-    st.write(data[['act', 'prompt']].style.hide(axis="index").set_properties(subset='prompt', **{
-        'max-width': '100%',
-        'white-space': 'pre-wrap'
-    }))
+
 with expand_section:
     st.subheader("➕ Add new Persona")
     st.text("Press enter to update/save")
