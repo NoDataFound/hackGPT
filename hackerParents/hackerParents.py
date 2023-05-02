@@ -49,7 +49,7 @@ temperature = st.sidebar.slider(
     "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
 
-)
+
     
 url = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/hackerParents/social_data.csv"
 data = pd.read_csv(url)
@@ -61,8 +61,8 @@ social_media = data['Social Media']
 privacy_link = data['Privacy Policy Link']
 col1, col2, col3 = st.columns(3)
 col1.metric("Persona", selected_persona,selected_persona ) 
-col2.metric("Persona Count", len(persona_files),len(persona_files) 
-col3.metric("Social Media Services", len(data),len(data) 
+col2.metric("Persona Count", len(persona_files),len(persona_files) )
+col3.metric("Social Media Services", len(data),len(data) )
 # Filter
 options = st.multiselect(
     '**Select the services to check:**',
