@@ -44,7 +44,7 @@ temperature = st.sidebar.slider(
     "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
 
-with open(os.path.join("social_data.csv"), "r") as f:
+with open("social_data.csv", "r") as f:
     
 #url = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
     data = pd.read_csv(f)
