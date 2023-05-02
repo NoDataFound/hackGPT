@@ -47,10 +47,10 @@ selected_persona = st.sidebar.selectbox("👪 Select Parent", ["Parent of 13 yea
 default_temperature = 1.0
 expand_section = st.sidebar.expander("Temperature", expanded=False)
 with expand_section:
-   temperature = st.sidebar.slider(
+    if default_temperature == 1.0:
+        temperature = st.sidebar.slider(
     "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
-expand_section = st.sidebar.expander("Temperature", expanded=False)
 
 
 
