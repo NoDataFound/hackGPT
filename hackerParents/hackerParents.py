@@ -35,7 +35,7 @@ img {
 """
 
 st.markdown(f'<style>{CSS}</style>', unsafe_allow_html=True)
-st.sidebar.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=350)
+st.sidebar.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=300)
 def get_persona_files():
     return [f.split(".")[0] for f in os.listdir("hackerParents/parent_persona") if f.endswith(".md")]
 persona_files = get_persona_files()
