@@ -108,7 +108,7 @@ with expand_section:
         if confirm:
             if not os.path.exists("personas"):
                 os.mkdir("personas")
-            with open(os.path.join("personas", f"{selected_hacker}_remote.md"), "w") as f:
+            with open(os.path.join("personas", f"{selected_hacker}_jailbreak.md"), "w") as f:
                 f.write(selected_jailbreak_prompt)
 
 expand_section = st.sidebar.expander("➕ Add new Persona", expanded=False)
