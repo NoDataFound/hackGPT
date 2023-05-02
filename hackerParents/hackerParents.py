@@ -47,9 +47,9 @@ temperature = st.sidebar.slider(
 
     
 url = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/hackerParents/social_data.csv"
-    data = pd.read_csv(url)
-    new_row = pd.DataFrame({"Social Media": [" "], "Privacy Policy Link": [""]})
-    data = pd.concat([data, new_row], ignore_index=True)
+data = pd.read_csv(url)
+new_row = pd.DataFrame({"Social Media": [" "], "Privacy Policy Link": [""]})
+data = pd.concat([data, new_row], ignore_index=True)
 
 # Data Sources
 social_media = data['Social Media']
