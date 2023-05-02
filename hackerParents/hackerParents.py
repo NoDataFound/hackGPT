@@ -44,10 +44,10 @@ temperature = st.sidebar.slider(
     "Temperature | Creative >0.5", min_value=0.0, max_value=1.0, step=0.1, value=default_temperature
 ) 
 
-with open("https://raw.githubusercontent.com/NoDataFound/hackGPT/main/hackerParents/social_data.csv", "r") as f:
+
     
-#url = "https://raw.githubusercontent.com/f/awesome-chatgpt-prompts/main/prompts.csv"
-    data = pd.read_csv(f)
+url = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/hackerParents/social_data.csv"
+    data = pd.read_csv(url)
     new_row = pd.DataFrame({"Social Media": [" "], "Privacy Policy Link": [""]})
     data = pd.concat([data, new_row], ignore_index=True)
 
