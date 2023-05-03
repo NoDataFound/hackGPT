@@ -32,7 +32,7 @@ img {
 
 st.markdown(f'<style>{CSS}</style>', unsafe_allow_html=True)
 st.sidebar.image('https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png', width=300)
-github_logo = "https://img.shields.io/badge/GitHub-%23121011.svg?logo=GitHub&logoColor=white"
+github_logo = "https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/gh.png"
 hackGPT_repo = "https://github.com/NoDataFound/hackGPT"
 
 st.sidebar.markdown(f"[![GitHub]({github_logo})]({hackGPT_repo} 'hackGPT repo')")
