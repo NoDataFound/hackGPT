@@ -158,11 +158,11 @@ if user_input and selected_persona:
     
     if "{options}" in user_input:
         options_text = []
-    for option_url in options:
-        text = get_text_from_url(option_url)
-        options_text.append(text)
-        current_date = datetime.now().strftime("%Y-%m-%d")
-        st.markdown(f"Successfully retrieved content from {option_url} dated {current_date}", unsafe_allow_html=True)
+        for option_url in options:
+            text = get_text_from_url(option_url)
+            options_text.append(text)
+            current_date = datetime.now().strftime("%Y-%m-%d")
+            st.markdown(f"Successfully retrieved content from {option_url} dated {current_date}", unsafe_allow_html=True)
 else:
     options_text = options
 
