@@ -163,8 +163,8 @@ if user_input and selected_persona:
             options_text.append(text)
             current_date = datetime.now().strftime("%Y-%m-%d")
             st.markdown(f"Successfully retrieved content from {option_url} dated {current_date}", unsafe_allow_html=True)
-else:
-    options_text = options
+    else:
+        options_text = options
 
 prompt = f"Based on {persona_text}  check against  {options_text} and return a response for {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])}.  "
 
