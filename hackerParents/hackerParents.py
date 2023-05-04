@@ -9,6 +9,7 @@ import pandas as pd
 import os
 import csv
 import openai
+from bs4 import BeautifulSoup
 
 
 
