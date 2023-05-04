@@ -10,7 +10,7 @@ import os
 import csv
 import openai
 from bs4 import BeautifulSoup
-from time import datetime
+from datetime import datetime
 
 
 
