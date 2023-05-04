@@ -9,3 +9,4 @@ ipywidgets
 inquirer
 prettytable
 jira
+beautifulsoup4
