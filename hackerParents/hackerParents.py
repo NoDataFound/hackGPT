@@ -10,6 +10,7 @@ import os
 import csv
 import openai
 from bs4 import BeautifulSoup
+from time import datetime
 
 
 
@@ -156,21 +157,26 @@ if user_input and selected_persona:
     chat_history.append(("You", user_input))
     
     if "{options}" in user_input:
-        options_text = [get_text_from_url(option_url) for option_url in options]
-    else:
-        options_text = options
-    
-    prompt = f"Based on {persona_text}  check against  {options_text} and return a response to answer  {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])}.  "
-    
-    completions = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=prompt,
-        max_tokens=1024,
-        n=1,
-        stop=None,
-        temperature=1.0,
-    )
-    results = completions.choices[0].text.strip()
-    chat_history.append((selected_persona, results))
-    st.markdown(results, unsafe_allow_html=True)
+        options_text = []
+    for option_url in options:
+        text = get_text_from_url(option_url)
+        options_text.append(text)
+        current_date = datetime.now().strftime("%Y-%m-%d")
+        st.markdown(f"Successfully retrieved content from {option_url} dated {current_date}", unsafe_allow_html=True)
+else:
+    options_text = options
+
+prompt = f"Based on {persona_text}  check against  {options_text} and return a response for {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])}.  "
+
+completions = openai.Completion.create(
+    engine="text-davinci-003",
+    prompt=prompt,
+    max_tokens=1024,
+    n=1,
+    stop=None,
+    temperature=1.0,
+)
+results = completions.choices[0].text.strip()
+chat_history.append((selected_persona, results))
+st.markdown(results, unsafe_allow_html=True)
 
