@@ -141,6 +141,11 @@ with expand_section:
     with open(os.path.join("hackerParents/parent_persona", f"{selected_persona}.md"), "r") as f:
         persona_text = f.read()
     #st.text("Press Enter/Return to send text")
+def get_text_from_url(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.content, "html.parser")
+    return ' '.join(t.strip() for t in soup.stripped_strings)
+
 user_input = st.text_input("User: ", label_visibility="hidden", placeholder="🤖 Welcome to hackerParents! Just ask 'Can my child have an account...")
 chat_history = []
 
@@ -149,7 +154,13 @@ if user_input and selected_persona:
         persona_text = f.read()
     chat_history.append(("You", user_input))
     
-    prompt = f"Based on {persona_text} {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])} check against  {options} and return a yes or no if appropriate and summarize why.  "
+    if "{options}" in user_input:
+        options_text = [get_text_from_url(option_url) for option_url in options]
+    else:
+        options_text = options
+    
+    prompt = f"Based on {persona_text}  check against  {options_text} and return a response to answer  {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])}.  "
+    
     completions = openai.Completion.create(
         engine="text-davinci-003",
         prompt=prompt,
