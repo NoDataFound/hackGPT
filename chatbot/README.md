@@ -1,3 +1,4 @@
+![Screenshot 2023-05-11 at 12 09 48 PM](https://github.com/NoDataFound/hackGPT/assets/3261849/bf677602-b8b5-4783-86bc-692dbf5e3273)
 `Slack Bot Setup`
 Follow these steps to set up a Slack bot for your workspace:
 
