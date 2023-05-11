@@ -1,0 +1,4 @@
+openai
+python-dotenv
+slack-bolt
+slack-sdk
