@@ -1,6 +1,6 @@
 ![](https://img.shields.io/badge/hackGPT-v23-purple)
 
-`Test the app live here:` https://hackgpt.streamlit.app/
+`Test the app live here:` https://hackgpt.com
 <img width="1681" alt="Screenshot 2023-04-30 at 6 59 28 PM" src="https://user-images.githubusercontent.com/3261849/235382192-714758c2-5117-4c95-851d-eeeb9301221f.png">
 
 ![Screenshot 2023-05-11 at 12 09 48 PM](https://github.com/NoDataFound/hackGPT/assets/3261849/f8f85831-706f-4398-9da1-365323f656bd)
