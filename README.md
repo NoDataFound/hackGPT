@@ -5,6 +5,9 @@
 
 ![Screenshot 2023-05-11 at 12 09 48 PM](https://github.com/NoDataFound/hackGPT/assets/3261849/f8f85831-706f-4398-9da1-365323f656bd)
 
+
+![WhiskersGPT](https://github.com/NoDataFound/hackGPT/assets/3261849/2157a52a-5f77-4d23-a6ca-c80d917b2bf8)
+
 <img width="1681" alt="Screenshot 2023-04-29 at 2 42 41 PM" src="https://user-images.githubusercontent.com/3261849/235321459-35eb1ecb-58b6-4439-9fee-dbc63e13f3e1.png">
 
 <img width="1624" alt="Screenshot 2023-04-24 at 8 41 52 PM" src="https://user-images.githubusercontent.com/3261849/234341399-f79b9ca3-e829-4831-8e67-e75e8840adfd.png">
