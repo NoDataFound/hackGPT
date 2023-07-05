@@ -1,6 +1,11 @@
 # hackGPTp (built from privateGPT)
-<img width="1633" alt="Screenshot 2023-07-04 at 3 56 37 PM" src="https://github.com/NoDataFound/hackGPT/assets/3261849/30da4154-f0cf-434c-a7c4-d6a09789a7d3">
+<img width="1658" alt="Screenshot 2023-07-05 at 11 56 11 AM" src="https://github.com/NoDataFound/hackGPT/assets/3261849/274d1d6a-74c2-42cc-9aef-3f87940401a6">
 
+Run the following command to start hackGPTp .
+
+```shell
+streamlit run dev_hackGPTp.py
+```
 Ask questions to your documents without an internet connection, using the power of LLMs. 100% private, no data leaves your execution environment at any point. You can ingest documents and ask questions without an internet connection!
 
 Built with [LangChain](https://github.com/hwchase17/langchain), [GPT4All](https://github.com/nomic-ai/gpt4all), [LlamaCpp](https://github.com/ggerganov/llama.cpp), [Chroma](https://www.trychroma.com/) and [SentenceTransformers](https://www.sbert.net/).
@@ -57,12 +62,6 @@ The supported extensions are:
    - `.ppt` : PowerPoint Document,
    - `.txt`: Text file (UTF-8),
 
-Run the following command to ingest all the data.
 
-```shell
-streamlit run dev_hackGPTp.py
-```
 
-Output should look like this:
-<img width="1471" alt="Screenshot 2023-07-04 at 4 17 37 PM" src="https://github.com/NoDataFound/hackGPT/assets/3261849/e9a8c825-e1ad-45c4-8e8d-b7d3de136044">
 
