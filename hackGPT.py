@@ -141,10 +141,10 @@ questions = [
 answers = inquirer.prompt(questions)
 hackgpt_persona = answers['Persona']
 
-if hackgpt_persona =='hackGPT':
-    hackGPT_mode = open('personas/hackGPTv1.md' ,"r")
-    hackGPT_mode = hackGPT_mode.read()
-    pass
+if hackgpt_persona == 'hackGPT':
+    with open('personas/hackGPTv1.md', 'r', encoding='utf-8') as hackGPT_mode:
+        hackGPT_mode_contents = hackGPT_mode.read()
+
 elif hackgpt_persona =='chatGPT-DEV':
     hackGPT_mode = open('personas/DEVv1.md' ,"r")
     hackGPT_mode = hackGPT_mode.read()
