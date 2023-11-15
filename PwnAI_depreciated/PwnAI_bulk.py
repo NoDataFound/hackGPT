@@ -123,7 +123,7 @@ with open(targets, 'r') as targets:
     
     for search in openai_targets:
         #search = search.strip()
-        response = openai.Completion.create(
+        response = openai.chat.completions.create(
         model="text-davinci-003",
         prompt=search+"\n\n",
         temperature=0,

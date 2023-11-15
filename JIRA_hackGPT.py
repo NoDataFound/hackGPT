@@ -129,7 +129,7 @@ for issue in issues:
     print(description)
     prompt = f"Fix the following issue: {issue.fields.description}"
     model_engine = "davinci"
-    completions = openai.Completion.create(
+    completions = openai.chat.completions.create(
         engine=model_engine,
         prompt=prompt,
         max_tokens=1024,

@@ -117,7 +117,7 @@ def handle_message_events(ack, body, logger):
             text="Pick a persona from the dropdown list"
         )
     else:
-        response = openai.Completion.create(
+        response = openai.chat.completions.create(
             engine="text-davinci-003",
             prompt=prompt,
             max_tokens=1024,
@@ -141,7 +141,7 @@ def handle_static_select_action(ack, body, logger):
     prompt = message_text[prompt_start_index:].strip()
     prompt_with_persona = selected_option_value + prompt
 
-    response = openai.Completion.create(
+    response = openai.chat.completions.create(
         engine="text-davinci-003",
         prompt=prompt_with_persona,
         max_tokens=1024,

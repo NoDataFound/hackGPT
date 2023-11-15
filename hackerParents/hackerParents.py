@@ -168,7 +168,7 @@ if user_input and selected_persona:
 
 prompt = f"Based on {persona_text}  check against  {options_text} and return a response for {' '.join([f'{m[0]}: {m[1]}' for m in chat_history])}.  "
 
-completions = openai.Completion.create(
+completions = openai.chat.completions.create(
     engine="text-davinci-003",
     prompt=prompt,
     max_tokens=1024,

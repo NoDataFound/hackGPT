@@ -122,7 +122,7 @@ with open('output/chat_hackGPT_log.csv', 'a+', encoding='UTF8', newline='') as f
     f.close()
     
 def add_text(state, text):
-    response = openai.Completion.create(
+    response = openai.chat.completions.create(
         model="text-davinci-003",
         prompt=str(hackGPT_mode) + str(text),
         temperature=0,
@@ -146,7 +146,7 @@ def add_text(state, text):
 def add_file(file_state, file):
     with open(file.name, 'r') as targets:
         search = targets.read()
-        response = openai.Completion.create(
+        response = openai.chat.completions.create(
             model="text-davinci-003",
             prompt=str(search)+"\n",
             temperature=0,
