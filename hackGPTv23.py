@@ -157,7 +157,7 @@ def get_ai_response(text_input):
     messages = [{'role': 'system', 'content': 'You are a helpful assistant.'},
                 {'role': 'user', 'content': text_input+persona_text}]
 
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model=MODEL,
         messages=messages,
         temperature=temperature,
@@ -170,7 +170,7 @@ def get_ai_response(text_input):
     return response['choices'][0]['message']['content']
 
 def add_text(text_input):
-    response = openai.Completion.create(
+    response = openai.chat.completions.create(
         model=MODEL,
         prompt=str(persona_text) + text_input,
         temperature=temperature,
