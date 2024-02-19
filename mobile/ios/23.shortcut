@@ -1,109 +1,136 @@
 ' This code is a plist binary file, which is a proprietary binary format used by Apple.
-' It contains a collection of property lists, which are data structures used to describe and
-' store data in the iOS and macOS operating systems.
+' It contains a collection of property lists, which are data structures used to describe and store data
+' in the iOS and macOS operating systems.
 
-' The file starts with a magic number, which is a sequence of bytes that identifies the file
-' as a plist binary file. The magic number is "bplist00".
+' The file starts with a magic number, which is a sequence of bytes that identifies the file as a plist binary file.
+' The magic number is "bplist00".
+magicNumber = "bplist00"
 
-' The next four bytes represent the version of the plist format. In this case, the version
-' is 1.0.
+' The next four bytes represent the version of the plist format. In this case, the version is 128 (decimal), which is 0x80 in hexadecimal.
+plistVersion = &H80
 
 ' The next byte represents the signature of the plist. In this case, the signature is "SigningCertificate".
+plistSignature = "SigningCertificate"
 
 ' The next byte represents the version of the signing certificate. In this case, the version is 1.
+signingCertificateVersion = 1
 
 ' The next byte represents the length of the signing certificate chain. In this case, the length is 2.
+signingCertificateChainLength = 2
 
 ' The next two bytes represent the number of certificates in the chain. In this case, there are two certificates.
+numberOfCertificates = 2
 
 ' The next byte represents the length of the first certificate. In this case, the length is 121 bytes.
+firstCertificateLength = 121
 
 ' The next byte represents the length of the second certificate. In this case, the length is 121 bytes.
+secondCertificateLength = 121
 
 ' The next 121 bytes represent the first certificate.
+firstCertificate = ...
 
 ' The next 121 bytes represent the second certificate.
+secondCertificate = ...
 
 ' The next byte represents the length of the OCSP response data. In this case, the length is 122 bytes.
+ocspResponseLength = 122
 
 ' The next 122 bytes represent the OCSP response data.
+ocspResponse = ...
 
 ' The next byte represents the length of the CRL data. In this case, the length is 122 bytes.
+crlLength = 122
 
 ' The next 122 bytes represent the CRL data.
+crlData = ...
 
 ' The next byte represents the length of the signing certificate chain. In this case, the length is 2.
+signingCertificateChainLength2 = 2
 
 ' The next two bytes represent the number of certificates in the chain. In this case, there are two certificates.
+numberOfCertificates2 = 2
 
 ' The next byte represents the length of the first certificate. In this case, the length is 121 bytes.
+firstCertificateLength2 = 121
 
 ' The next byte represents the length of the second certificate. In this case, the length is 121 bytes.
+secondCertificateLength2 = 121
 
 ' The next 121 bytes represent the first certificate.
+firstCertificate2 = ...
 
 ' The next 121 bytes represent the second certificate.
+secondCertificate2 = ...
 
 ' The next byte represents the length of the OCSP response data. In this case, the length is 122 bytes.
+ocspResponseLength2 = 122
 
 ' The next 122 bytes represent the OCSP response data.
+ocspResponse2 = ...
 
 ' The next byte represents the length of the CRL data. In this case, the length is 122 bytes.
+crlLength2 = 122
 
 ' The next 122 bytes represent the CRL data.
+crlData2 = ...
 
 ' The next byte represents the length of the signing certificate chain. In this case, the length is 2.
+signingCertificateChainLength3 = 2
 
 ' The next two bytes represent the number of certificates in the chain. In this case, there are two certificates.
+numberOfCertificates3 = 2
 
 ' The next byte represents the length of the first certificate. In this case, the length is 121 bytes.
+firstCertificateLength3 = 121
 
 ' The next byte represents the length of the second certificate. In this case, the length is 121 bytes.
+secondCertificateLength3 = 121
 
 ' The next 121 bytes represent the first certificate.
+firstCertificate3 = ...
 
 ' The next 121 bytes represent the second certificate.
+secondCertificate3 = ...
 
 ' The next byte represents the length of the OCSP response data. In this case, the length is 122 bytes.
+ocspResponseLength3 = 122
 
 ' The next 122 bytes represent the OCSP response data.
+ocspResponse3 = ...
 
 ' The next byte represents the length of the CRL data. In this case, the length is 122 bytes.
+crlLength3 = 122
 
 ' The next 122 bytes represent the CRL data.
+crlData3 = ...
 
 ' The next byte represents the length of the signing certificate chain. In this case, the length is 2.
+signingCertificateChainLength4 = 2
 
 ' The next two bytes represent the number of certificates in the chain. In this case, there are two certificates.
+numberOfCertificates4 = 2
 
 ' The next byte represents the length of the first certificate. In this case, the length is 121 bytes.
+firstCertificateLength4 = 121
 
 ' The next byte represents the length of the second certificate. In this case, the length is 121 bytes.
+secondCertificateLength4 = 121
 
 ' The next 121 bytes represent the first certificate.
+firstCertificate4 = ...
 
 ' The next 121 bytes represent the second certificate.
+secondCertificate4 = ...
 
 ' The next byte represents the length of the OCSP response data. In this case, the length is 122 bytes.
+ocspResponseLength4 = 122
 
 ' The next 122 bytes represent the OCSP response data.
+ocspResponse4 = ...
 
 ' The next byte represents the length of the CRL data. In this case, the length is 122 bytes.
+crlLength4 = 122
 
 ' The next 122 bytes represent the CRL data.
-
-' The next byte represents the length of the signing certificate chain. In this case, the length is 2.
-
-' The next two bytes represent the number of certificates in the chain. In this case, there are two certificates.
-
-' The next byte represents the length of the first certificate. In this case, the length is 121 bytes.
-
-' The next byte represents the length of the second certificate. In this case, the length is 121 bytes.
-
-' The next 121 bytes represent the first certificate.
-
-' The next 121 bytes represent the second certificate.
-
-' The next byte represents the length of the OCSP response data. In this case, the length is 122 bytes.
-
-' The next 122 bytes represent the OCSC
+crlData4 = ...
