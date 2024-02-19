@@ -1,3 +1,4 @@
+# Import necessary libraries
 import streamlit as st
 from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
@@ -9,7 +10,7 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
-# Set default values from environment variables
+# Set default values for various variables from environment variables
 model_n_ctx = int(os.environ.get('MODEL_N_CTX', 1000))
 model_n_batch = int(os.environ.get('MODEL_N_BATCH', 8))
 target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS', 4))
@@ -20,10 +21,13 @@ embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME', 'all-MiniLM-L6-v
 # Set up the sidebar
 st.sidebar.title("Settings")
 with st.sidebar.expander("Settings"):
+    # Create sliders for various parameters
     model_n_ctx = st.slider("MODEL_N_CTX", min_value=100, max_value=5000, value=model_n_ctx)
     model_n_batch = st.slider("MODEL_N_BATCH", min_value=1, max_value=16, value=model_n_batch)
     target_source_chunks = st.slider("TARGET_SOURCE_CHUNKS", min_value=1, max_value=10, value=target_source_chunks)
+    # Create a dropdown for selecting the model type
     model_type = st.selectbox("MODEL_TYPE", ['LlamaCpp', 'GPT4All'], index=0 if model_type == 'LlamaCpp' else 1)
+    # Create text input fields for the model path and embeddings model name
     model_path = st.text_input("MODEL_PATH", value=model_path)
     embeddings_model_name = st.text_input("EMBEDDINGS_MODEL_NAME", value=embeddings_model_name)
 
@@ -43,7 +47,7 @@ def main():
     # Read the uploaded files in the "input/files" directory
     uploaded_files = [os.path.join("input/files", filename) for filename in os.listdir("input/files")]
 
-    # File uploader
+    # Create a file uploader
     uploaded_file = st.sidebar.file_uploader("Choose a file", type=["pdf", "txt"])
     if uploaded_file is not None:
         # Save the uploaded file
@@ -51,10 +55,10 @@ def main():
         st.sidebar.success("File uploaded successfully.")
         uploaded_files.append(file_path)
 
-    # Multi-select for selecting documents
+    # Create a multi-select for selecting documents
     selected_documents = st.multiselect("Selected Documents", uploaded_files)
 
-    # Process button
+    # Create a Process button
     if st.button("Process") and selected_documents:
         with st.spinner("Processing the document..."):
             try:
@@ -64,7 +68,7 @@ def main():
             except Exception as e:
                 st.error(f"Error: {str(e)}")
 
-    # Question form
+    # Create a question form
     query = st.text_input("Ask your question", value="", key="question_input")
     submit_button = st.button("Submit")
 
@@ -90,19 +94,13 @@ def main():
             st.info("Processing the question...")
             chunks = split_text_into_chunks(document_text, model_n_ctx)
             answer = ""
-            docs = []
+            documents = []
             for chunk in chunks:
                 res = qa(chunk, query)
                 answer += res['result'] + " "
-                docs.extend(res['source_documents'])
+                documents.extend(res['source_documents'])
             st.success("Question processed.")
 
             # Print the result
             st.subheader("Question:")
             st.write(query)
-            st.subheader("Answer:")
-            st.write(answer.strip())
-
-            # Print the relevant sources used for the answer
-            for document in docs:
-                st.subheader(document.metadata["source
