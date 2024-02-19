@@ -15,14 +15,14 @@ def download_webpage(url):
     return text_content
 
 # Set page configuration
-st.set_page_config(page_title="ððððð»ð¾ð¥", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
+st.set_page_config(page_title="ððð¡hackGPT", page_icon="https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png", layout="wide")
 
 # Display app logo and title
 st.image("https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackGPT_logo.png", width=80)
 st.sidebar.markdown("""
     <center>
         <img src='https://raw.githubusercontent.com/NoDataFound/hackGPT/main/res/hackgpt_fav.png' alt='hackGPTlogo' width='64'/> 
-        hackGP<T> with Local LLMS
+        hackGPT with Local LLMs
     </center>
 """, unsafe_allow_html=True)
 st.sidebar.markdown("----")
