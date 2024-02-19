@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*,-
+# -*- coding: utf-8 -*,-  Encoding declaration for non-ASCII characters
 
 import os
-import fade
+import fade  # Unknown import, possibly custom or unnecessary
 import requests
-import urllib.parse
-import urlib.request
-import openai
-import pandas as pd
-import matplotlib.pyplot as plt
-import json
-import csv
-import datetime
-import argparse
-from prettytable import from_csv, ColorTable, Themes
-from prettytable import from_csv
-from jira import JIRA
+import urllib.parse as urlparse  # Parse URLs
+import urllib.request as urlrequest  # Make HTTP requests
+import openai  # Interact with OpenAI API
+import pandas as pd  # Data manipulation and analysis
+import matplotlib.pyplot as plt  # Data visualization
+import json  # Work with JSON data
+import csv  # Work with CSV files
+import datetime as dt  # Date and time manipulation
+import argparse  # Command line argument parsing
+
+from prettytable import from_csv, ColorTable, Themes  # Data display
+from jira import JIRA  # Interact with JIRA
 
 # Load API key from environment variable or secret management service
 load_dotenv(".env")
@@ -33,9 +33,8 @@ issues = jira.search_issues('type = bug')
 # Iterate through each issue
 for issue in issues:
     # Print JIRA ticket summary
-    ticket = "JIRA Ticket Summary: "
-    summary = issue.fields.summary
-    print(fade.water(ticket.rstrip('\n') + summary))
+    ticket = f"JIRA Ticket Summary: {issue.fields.summary}"
+    print(fade.water(ticket))
 
     # Print issue description
     description = fade.water(issue.fields.description)
@@ -69,5 +68,4 @@ for issue in issues:
     # Log the issue and solution to a CSV file
     # with open('output/JIRA_hackGPT_log.csv', 'a+', encoding='UTF8', newline='') as f:
     #     w = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-    #     w.writerow([datetime.datetime.now(), issue.fields.description, response])
-    #     f.close()
+    #     w.writerow([dt.datetime.now(), issue.fields.description, response])
