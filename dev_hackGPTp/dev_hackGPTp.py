@@ -3,16 +3,17 @@ from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.llms import GPT4All, LlamaCpp
+from langchain.llms import LlamaCpp, GPT4All
 import os
 
+# Load environment variables from .env file
 load_dotenv()
 
-# Set default values from .env
+# Set default values from environment variables
 model_n_ctx = int(os.environ.get('MODEL_N_CTX', 1000))
 model_n_batch = int(os.environ.get('MODEL_N_BATCH', 8))
 target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS', 4))
-model_type = os.environ.get('MODEL_TYPE', 'GPT4All')
+model_type = os.environ.get('MODEL_TYPE', 'LlamaCpp')
 model_path = os.environ.get('MODEL_PATH', 'LLM/ggml-gpt4all-j-v1.3-groovy.bin')
 embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME', 'all-MiniLM-L6-v2')
 
@@ -26,6 +27,7 @@ with st.sidebar.expander("Settings"):
     model_path = st.text_input("MODEL_PATH", value=model_path)
     embeddings_model_name = st.text_input("EMBEDDINGS_MODEL_NAME", value=embeddings_model_name)
 
+# Import constants from constants.py
 from constants import CHROMA_SETTINGS
 
 def main():
@@ -66,12 +68,6 @@ def main():
     query = st.text_input("Ask your question", value="", key="question_input")
     submit_button = st.button("Submit")
 
-    document_text = ""  # Initialize the variable here
-    for document in selected_documents:
-        read_doc = document
-        with open(str(read_doc), "r") as f:
-            document_text += f.read().strip() + " "
-
     if submit_button and query:
         st.title("Results")
 
@@ -109,62 +105,4 @@ def main():
 
             # Print the relevant sources used for the answer
             for document in docs:
-                st.subheader(document.metadata["source"])
-                st.code(document.page_content)
-        except Exception as e:
-            st.error(f"Error: {str(e)}")
-
-def save_uploaded_file(uploaded_file):
-    file_name = uploaded_file.name
-    file_path = os.path.join("input/files", file_name)
-    with open(file_path, "wb") as f:
-        f.write(uploaded_file.getbuffer())
-    return file_path
-
-def process_documents(selected_documents):
-    document_text = ""
-    for document_file in selected_documents:
-        with open(document_file, "r") as f:
-            text_content = f.read().strip()
-        document_text += text_content + " "
-    return document_text.strip()
-
-def display_document_info(selected_documents, document_text):
-    # Document information
-    st.subheader("Document Information")
-
-    # Display file names
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.write("Filename:")
-        for document_file in selected_documents:
-            st.write(os.path.basename(document_file))
-
-    # Display word count
-    with col2:
-        word_count = len(document_text.split())
-        st.write("Word Count:")
-        st.write(word_count)
-
-    # Display total length
-    with col3:
-        total_length = len(document_text)
-        st.write("Total Length:")
-        st.write(total_length)
-
-    # Display five lines of text
-    #st.write("Text Sample:")
-    lines = document_text.split("\n")[:5]
-    st.code("\n".join(lines))
-
-def split_text_into_chunks(text, chunk_size):
-    chunks = []
-    while len(text) > chunk_size:
-        chunks.append(text[:chunk_size])
-        text = text[chunk_size:]
-    if text:
-        chunks.append(text)
-    return chunks
-
-if __name__ == "__main__":
-    main()
+                st.subheader(document.metadata["source
