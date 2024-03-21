@@ -1,1 +1,28 @@
-#hacking
+import sys
+import requests
+
+def check_vulnerability(url):
+    """
+    Check if a website is vulnerable to a simple HTTP request smuggling attack.
+    """
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Transfer-Encoding": "chunked"
+    }
+
+    # Send a request with a malicious header that could be used for HTTP request smuggling
+    response = requests.post(url, headers=headers, data="A")
+
+    # Check if the server processed the request correctly
+    if "HTTP/1.1 200 OK" in response.text:
+        print(f"The website at {url} may be vulnerable to HTTP request smuggling attacks.")
+    else:
+        print(f"The website at {url} appears to be secure against HTTP request smuggling attacks.")
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python hacking.py <url>")
+        sys.exit(1)
+
+    url = sys.argv[1]
+    check_vulnerability(url)
