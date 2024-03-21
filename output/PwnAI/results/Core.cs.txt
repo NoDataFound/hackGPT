@@ -1,3 +1,25 @@
- It's creating a new <code>System.Management.Automation.Runspaces.Runspace</code> object.
-2. It's creating a new <code>System.Management.Automation.Runspaces.Pipeline</code> object.
-3. It's adding a
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
+
+// Create a new Runspace
+using (Runspace runspace = RunspaceFactory.CreateRunspace())
+{
+    // Open the Runspace
+    runspace.Open();
+
+    // Create a new Pipeline
+    using (Pipeline pipeline = runspace.CreatePipeline())
+    {
+        // Add a command to the Pipeline
+        pipeline.Commands.Add("Get-Process");
+
+        // Execute the Pipeline and store the results in a collection of PSObject
+        var results = pipeline.Invoke();
+
+        // Close the Pipeline
+        pipeline.Close();
+    }
+
+    // Close the Runspace
+    runspace.Close();
+}
