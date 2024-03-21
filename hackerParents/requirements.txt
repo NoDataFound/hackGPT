@@ -1,12 +1,13 @@
-directory_structure
-alive_progress
-fade
-python-dotenv
-pathlib
-openai
-gradio
-ipywidgets
-inquirer
-prettytable
-jira
-beautifulsoup4
+directory-structure== (version number, if needed)
+alive-progress== (version number, if needed)
+fade== (version number, if needed)
+python-dotenv== (version number, if needed)
+pathlib2== (if using Python 2, otherwise not needed)
+openai== (version number, if needed)
+gradio== (version number, if needed)
+ipywidgets== (version number, if needed)
+inquirer== (version number, if needed)
+prettytable== (version number, if needed)
+jira== (version number, if needed)
+beautifulsoup4== (version number, if needed)
+
