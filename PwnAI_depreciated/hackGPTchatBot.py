@@ -10,14 +10,13 @@ import requests
 import urllib.parse
 import urllib.request
 import openai  # Import openai library
-from dotenv import load_dotenv  # Import dotenv library
 import gradio as gr  # Import gradio library
 import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import os  # Import os library
-from dotenv import load_dotenv
 import fade
+from dotenv import load_dotenv 
 from pathlib import Path
 
 # ---------------------------------------------------
@@ -27,7 +26,7 @@ from pathlib import Path
 load_dotenv()
 
 # Get the API token from the environment variable
-api_token = os.environ.get('OPENAI_TOKEN')
+api_token = os.getenv('OPENAI_TOKEN')
 
 # Set the OpenAI API key
 openai.api_key = api_token
@@ -36,7 +35,7 @@ openai.api_key = api_token
 # Check if OPENAI_TOKEN is set in the environment variable
 # ---------------------------------------------------
 
-if 'OPENAI_TOKEN' not in os.environ:
+if not api_token:
     error = '''
      ,                *   )   ,        )           , (   
                    ,  `(     ( /((     ,   (  (      )\   
@@ -56,7 +55,8 @@ if 'OPENAI_TOKEN' not in os.environ:
     Path(".env").touch()  # Create a new file named '.env'
     setting_token = open(".env", "a")  # Open the '.env' file in append mode
     user_key = input('Enter OpenAI API Key: ').replace(" ", "")  # Get the API key from the user
-    setting_token.write("OPENAI_TOKEN=" + '"' + user_key + '"\n')  # Write the API key to the '.env' file
+    setting_token.write("OPENAI_TOKEN=" + user_key + "\n")  # Write the API key to the '.env' file
+    os.environ["OPENAI_TOKEN"] = user_key  # Add the API key to the environment variable
 print("Configuration Saved")
 
 # ---------------------------------------------------
@@ -64,7 +64,7 @@ print("Configuration Saved")
 # ---------------------------------------------------
 
 load_dotenv()
-api_token = os.environ.get("OPENAI_TOKEN")
+api_token = os.getenv("OPENAI_TOKEN")
 headers = {
     "Accept": "application/json; charset=utf-8",
     "Authorization": "Token " + str(api_token)
@@ -74,9 +74,8 @@ headers = {
 # Check if OPENAI_TOKEN is set in the environment variable
 # ---------------------------------------------------
 
-if 'OPENAI_TOKEN' not in os.environ:
-    os.environ['OPENAI_TOKEN'] = input('Enter API Key: ').replace(" ", "")
-token = os.environ.get("OPENAI_TOKEN")
+if not api_token:
+    os.environ["OPENAI_TOKEN"] = input('Enter API Key: ').replace(" ", "")
 
 # ---------------------
 # Hack and GPT texts
@@ -97,6 +96,7 @@ hack = '''
 gpt = ''' 
          ,                       ,                      ,                      ,         ______  ______,_  ________ 
         ,                        ,                    ,                         ,      /      \|    ,   \|        \
-           ,                  ,                           ,                 ,          |  Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢,ÂÂ\\Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢,ÂÂ\\Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢Â,ÂÃ¢,ÂÂ   
+           ,                  ,                           ,                 ,          |  Ã¢ÂÂÃ¢ÂÂ __\Ã¢ÂÂÃ¢ÂÂ Ã¢ÂÂÃ¢ÂÂÃ¢,ÂÂ__/ Ã¢ÂÂÃ¢ÂÂ  | Ã¢ÂÂÃ¢Â,Â   
                                   ,   ,                                         ,    , | Ã¢ÂÂÃ¢ÂÂ __\Ã¢ÂÂÃ¢ÂÂ Ã¢ÂÂÃ¢,ÂÂ__/ Ã¢ÂÂÃ¢ÂÂ  | Ã¢ÂÂÃ¢Â,Â   
 
+'''
