@@ -1,70 +1,58 @@
-# Bulk OpenAI Search
-# This script is designed to search for information in bulk using the OpenAI API.
-# It reads in a list of search queries from a file, sends each query to the OpenAI API,
-# and saves the responses to text files.
+import json
+import requests
+import argparse
+import os
+import shutil
+from pathlib import Path
+from tqdm import tqdm
+import openai
 
-# Import required libraries
-import fa,de  # For text decoration
-import json  # For handling JSON data
-import requests  # For making HTTP requests
-import urllib.parse  # For URL parsing
-import urllib.request  # For making HTTP requests
-import argparse  # For parsing command-line arguments
-import sys  # For interacting with the Python runtime
-import os  # For interacting with the file system
-import shutil  # For file system manipulation
-from pathlib import Path  # For handling file paths
-from os import path  # For handling file paths
-from shutil import make_archive  # For creating archives
-from directory_structure import Tree  # For creating directory structures
-from alive_progress import alive_bar  # For displaying a progress bar
-from time import sleep  # For pausing execution
-import openai  # For interacting with the OpenAI API
-from dotenv import load_dotenv  # For loading environment variables from a .env file
+def read_queries(file):
+    with open(file, "r") as search:
+        queries = search.readlines()
+    return queries
 
-# Load environment variables from .env file
-load_dotenv()
+def search(queries, api_key):
+    openai.api_key = api_key
+    responses = []
+    for query in tqdm(queries):
+        response = openai.Completion.create(
+            engine="text-davinci-002",
+            prompt=query,
+            max_tokens=1024,
+            n=1,
+            stop=None,
+            temperature=0.5,
+        )
+        responses.append(response.choices[0].text)
+    return responses
 
-# Get the OpenAI API token from the environment variable
-api_token = os.environ.get("OPENAI_TOKEN")
+def save_responses(responses, file):
+    with open(file, "w") as output:
+        for response in responses:
+            output.write(response + "\n")
 
-# Check if the OpenAI API token is set
-if not api_token:
-    # Print an error message and exit if the token is not set
-    error = '''
-          ,               ,*   )           )            ,(   
-               ,          `(     ( /((      ,  (  (      )\   ,
-                       )\( ,  )\())\  (    )\),)(  ((((_) 
-          ,       ((_)\ (_))((,_) )\ ) ((   ))\  )\) 
-  ,                   8,"""" 8"""8  8"""8  8"""8,8 8"""8  
-           ,          8     8   8  ,8   8  8    8 8   8  
-,                     8,eeee 8eee8e 8eee8e 8   , 8 8eee8e 
-          ,           88    88   8 88   8 8    8 88   8, 
-                     88,    88   8 88   8 8,    8 88   8 
-            ,         88eee 88 ,  8 88   8 8eeee8 88   8 
- ,                 ,                
-   \033[1;3,3mAttempting to set OpenAI system variable with API key.
+def main():
+    parser = argparse.ArgumentParser(description="Bulk OpenAI Search")
+    parser.add_argument("file", help="The filename to search")
+    parser.add_argument("-t", "--token", help="The OpenAI API token")
+    args = parser.parse_args()
 
-  ,                    \033[0;37m,Example: \033[,40m$ Ã°ÂÂÂRESÃ°ÂÂÂ¡Ã°ÂÂÂÃ°ÂÂÂÃ°ÂÂÂ,Ã°ÂÂÂ OPENAI_TOKEN="Ã°ÂÂÂ°Ã°ÂÂÂ¸ Ã°Â,ÂÂÃ°ÂÂÂÃ°ÂÂÂÃ°ÂÂÂÃ°ÂÂÂ"
- ,     ,                \033[0;37m,See sample \03,3[40,m.Ã°ÂÂÂRES\033[0;37m file for, formati,ng.'''
+    if args.token:
+        api_key = args.token
+    else:
+        api_key = os.environ.get("OPENAI_TOKEN")
 
-    fadederror = fa.fire(error)
-    print(fadederror)
-    Path(".env").touch()
-    setting_token = open(".env", "a")
-    userkey = input('Enter API Key: ').replace(" ","")
-    setting_token.write("OPENAI_TO,KEN="+'"'+userkey+'"')
+    if not api_key:
+        print("Error: OpenAI API token not set")
+        sys.exit(1)
 
-# Get the filename to search from the command-line argument or use the default
-targets = input("Enter Filename:,, (Press enter for 'input/sample_sources' ) ",) or "input/sample_sources"
+    queries = read_queries(args.file)
+    responses = search(queries, api_key)
+    save_responses(responses, f"{Path(args.file).with_suffix('.txt')}")
 
-# Read the search queries from the specified file
-with open(targets, "r") as search:
-    query = search.read()
+if __name__ == "__main__":
+    main()
 
-# Print a message indicating that the search is starting
-print(fa.purplepink("""
-           ,           ,                   
-             ,     _____  ,   _____          _____   ______,         ____,_    ____ 
-              ___|\ ,   \   |\    \,   _____|\    \ |\     \    __,_|\    \  |    ,|
-             |    |\    \  ,| |    | /    /|,\
+
+python bulk_openai_search.py <filename> -t <api_token>
