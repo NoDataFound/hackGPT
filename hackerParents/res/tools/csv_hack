@@ -1,2 +1,26 @@
 #!/bin/bash
-perl -pe 's/((?<=,)|(?<=^)),/ ,/g;' "$@" | column -t -s, | exec less  -F -S -X -K
+
+# Check if input arguments are provided
+if [ $# -eq 0 ]; then
+  echo "No input files provided. Please provide one or more files as arguments."
+  exit 1
+fi
+
+# Loop through all input arguments (file names)
+for file in "$@"
+do
+  # Check if file exists
+  if [ ! -f "$file" ]; then
+    echo "File '$file' not found. Skipping..."
+    continue
+  fi
+
+  # Replace single commas not surrounded by spaces with a space and a comma
+  sed -i 's/\([^ ][,]\|\([,][^ ]\)\)/ \1/g' "$file"
+
+  # Display the modified file using 'less' with specified options
+  less -F -S -X -K "$file"
+
+  # Add a blank line between files
+  echo ""
+done
