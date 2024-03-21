@@ -2,12 +2,10 @@
 
 import os
 import glob
-from typing import List
+from typing import List, Dict, Union
 from dotenv import load_dotenv
 from multiprocessing import Pool
 from tqdm import tqdm
-
-# Langchain libraries
 from langchain.document_loaders import (
     CSVLoader,
     EverNoteLoader,
@@ -27,10 +25,7 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.docstore.document import Document
 from constants import CHROMA_SETTINGS
 
-# Load environment variables
 load_dotenv()
-
-# Define constants
 PERSIST_DIRECTORY = os.getenv('PERSIST_DIRECTORY')
 SOURCE_DIRECTORY = os.getenv('SOURCE_DIRECTORY', 'source_documents')
 EMBEDDINGS_MODEL_NAME = os.getenv('EMBEDDINGS_MODEL_NAME')
@@ -56,28 +51,26 @@ class MyElmLoader(UnstructuredEmailLoader):
 
         return doc
 
-# Map file extensions to document loaders and their arguments
-LOADER_MAPPING = {
-    ".csv": (CSVLoader, {}),
-    ".doc": (UnstructuredWordDocumentLoader, {}),
-    ".docx": (UnstructuredWordDocumentLoader, {}),
-    ".enex": (EverNoteLoader, {}),
-    ".eml": (MyElmLoader, {}),
-    ".epub": (UnstructuredEPubLoader, {}),
-    ".html": (UnstructuredHTMLLoader, {}),
-    ".md": (UnstructuredMarkdownLoader, {}),
-    ".odt": (UnstructuredODTLoader, {}),
-    ".pdf": (PyMuPDFLoader, {}),
-    ".ppt": (UnstructuredPowerPointLoader, {}),
-    ".pptx": (UnstructuredPowerPointLoader, {}),
-    ".txt": (TextLoader, {"encoding": "utf8"}),
+LOADER_MAPPING: Dict[str, Union[CSVLoader, EverNoteLoader, PyMuPDFLoader, TextLoader, UnstructuredEmailLoader, UnstructuredEPubLoader, UnstructuredHTMLLoader, UnstructuredMarkdownLoader, UnstructuredODTLoader, UnstructuredPowerPointLoader, UnstructuredWordDocumentLoader]] = {
+    ".csv": CSVLoader,
+    ".doc": UnstructuredWordDocumentLoader,
+    ".docx": UnstructuredWordDocumentLoader,
+    ".enex": EverNoteLoader,
+    ".eml": MyElmLoader,
+    ".epub": UnstructuredEPubLoader,
+    ".html": UnstructuredHTMLLoader,
+    ".md": UnstructuredMarkdownLoader,
+    ".odt": UnstructuredODTLoader,
+    ".pdf": PyMuPDFLoader,
+    ".ppt": UnstructuredPowerPointLoader,
+    ".pptx": UnstructuredPowerPointLoader,
+    ".txt": TextLoader,
 }
 
 def load_single_document(file_path: str) -> List[Document]:
     ext = "." + file_path.rsplit(".", 1)[-1]
     if ext in LOADER_MAPPING:
-        loader_class, loader_args = LOADER_MAPPING[ext]
-        loader = loader_class(file_path, **loader_args)
+        loader = LOADER_MAPPING[ext](file_path)
         return loader.load()
 
     raise ValueError(f"Unsupported file extension '{ext}'")
@@ -119,9 +112,6 @@ def does_vectorstore_exist(persist_directory: str) -> bool:
     """
     Checks if vectorstore exists
     """
-    if os.path.exists(os.path.join(persist_directory, 'index')):
-        if os.path.exists(os.path.join(persist_directory, 'chroma-collections.parquet')) and os.path.exists(os.path.join(persist_directory, 'chroma-embeddings.parquet')):
-            list_index_files = glob.glob(os.path.join(persist_directory, 'index/*.bin'))
-            list_index_files += glob.glob(os.path.join(persist_directory, 'index/*.pkl'))
-            # At least 3 documents are needed in a working vectorstore
-            return len(
+    if os.path.exists(persist_directory):
+        if os.path.exists(os.path.join(persist_directory, 'index')):
+            if os.path.exists(os.path.join(persist_directory,
