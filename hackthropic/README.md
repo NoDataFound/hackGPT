@@ -28,10 +28,13 @@ https://github.com/user-attachments/assets/4f6b5827-89d0-47d9-ace3-2d0965f5358b
 1. Clone this repository:
     ```bash
     git clone https://github.com/anthropics/anthropic-quickstarts.git
+    #Then download my start_hacking.sh script here: https://github.com/NoDataFound/hackGPT/tree/main/hackthropic or just clone this entire repo
+    git clone https://github.com/NoDataFound/hackGPT.git
     ```
+    
 2. Run the `start_hacking.sh` script: 
     ```bash
-    ./start_hacking.sh
+    hackGPT/hackthropic/start_hacking.sh #or whereever you saved it
     ```
 
 ## Environment Variables
