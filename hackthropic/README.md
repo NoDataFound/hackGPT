@@ -12,6 +12,7 @@ Why: On Oct 22, 2024 [Anthropic released ](https://www.anthropic.com/news/3-5-mo
 
 *"We’re also introducing a groundbreaking new capability in public beta: computer use. Available today on the API, developers can direct Claude to use computers the way people do—by looking at a screen, moving a cursor, clicking buttons, and typing text. Claude 3.5 Sonnet is the first frontier AI model to offer computer use in public beta."*
 
+So in this repo, I am showing how the install guide leverages this to install metasploit, set options and execute an attack.
 
 https://github.com/user-attachments/assets/4f6b5827-89d0-47d9-ace3-2d0965f5358b
 
