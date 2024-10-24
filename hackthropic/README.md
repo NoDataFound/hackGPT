@@ -26,7 +26,11 @@ https://github.com/user-attachments/assets/4f6b5827-89d0-47d9-ace3-2d0965f5358b
         - Documentation for this is here: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
             - I had pretty good luck with it respecting these prompts prior to running the commands issues in the streamlit input field   
             - <img width="784" alt="Screenshot 2024-10-24 at 9 26 43 AM" src="https://github.com/user-attachments/assets/bcc307c9-c1d7-4719-a6b3-1b62a69a5ec2">
-            
+           Interesting note: Even though its getting instruction to not intereact with external resources, it clearly ignores them.
+          ya know.. since I was able to clone MSF and run it against something externally.
+          
+          ![8yalrx](https://github.com/user-attachments/assets/f51f6fd1-15b0-4a95-b685-55376687dc25)
+
 - I experienced this issue ["Claude sometimes assumes outcomes of its actions without explicitly checking their results. "](https://docs.anthropic.com/en/docs/build-with-claude/computer-use) with some of my commands dispite telling it:
 
   ```... Run each command one at a time and make sure they complete.  I want to see the output as you run the command.```
