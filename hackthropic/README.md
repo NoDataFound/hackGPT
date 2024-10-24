@@ -6,10 +6,15 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/anthropics/anthropic-quickstarts)
 
 This repo just aims to get you started with Anthropics Quickstarts environment to deploy "AI" hacking agents for shenanigans.  
+<img width="1921" alt="Screenshot 2024-10-23 at 9 04 38 PM" src="https://github.com/user-attachments/assets/d110e3fd-c401-49c8-9836-2d6d195f5c2a">
 
 Why: On Oct 22, 2024 [Anthropic released ](https://www.anthropic.com/news/3-5-models-and-computer-use) and in part it states:
 
 *"We’re also introducing a groundbreaking new capability in public beta: computer use. Available today on the API, developers can direct Claude to use computers the way people do—by looking at a screen, moving a cursor, clicking buttons, and typing text. Claude 3.5 Sonnet is the first frontier AI model to offer computer use in public beta."*
+
+
+https://github.com/user-attachments/assets/4f6b5827-89d0-47d9-ace3-2d0965f5358b
+
 
 ## Prerequisites
 
