@@ -1,4 +1,5 @@
- 1. Find then icon for a linux terminal and then open it , then run each command after the "#### comment". Run each command one at a time and make sure they complete.  I want to see the output as you run the command.
+```
+1. Find then icon for a linux terminal and then open it , then run each command after the "#### comment". Run each command one at a time and make sure they complete.  I want to see the output as you run the command.
 
 #### Switch to root user
 sudo -i
@@ -54,4 +55,4 @@ use auxiliary/scanner/portscan/tcp
 set RHOSTS google.com
 run
 
-
+```
