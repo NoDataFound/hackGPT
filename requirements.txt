@@ -1,18 +1,24 @@
-transformers
-streamlit-chat
-huggingface-hub
-torch
-tqdm
-streamlit-extras
-hugchat
-directory_structure
-alive_progress
-fade
-python-dotenv
-pathlib
-openai
-gradio
-ipywidgets
-inquirer
-prettytable
-jira
+transformers==4.20.1
+streamlit-chat==0.0.4
+huggingface-hub==0.10.1
+torch==1.11.0
+tqdm==4.64.0
+streamlit-extras==0.4.1
+hugchat==0.0.1
+directory-structure==0.1.7
+alive-progress==2.3.1
+fade==1.3.1
+python-dotenv==0.20.0
+pathlib2==2.3.5 # pathlib2 is required for python < 3.4
+openai==0.26.4
+gradio==3.12.2
+ipywidgets==7.6.5
+inquirer==2.12.1
+prettytable==2.1.0
+jira==3.0.0
+
+
+pip freeze > requirements.txt
+
+
+pip install -r requirements.txt

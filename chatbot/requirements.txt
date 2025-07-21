@@ -1,4 +1,23 @@
 openai
 python-dotenv
-slack-bolt
-slack-sdk
+slack-bolt==1.6.0
+slack-sdk==3.13.0
+
+
+import os
+from slack_bolt import App
+from slack_bolt.adapter.socket_mode import SocketModeHandler
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = App(token=os.environ["SLACK_APP_TOKEN"])
+
+@app.message("hello")
+def say_hello(ack, say):
+    ack("Hello, <@{}>!".format(say.user_id))
+    say("It's nice to meet you!")
+
+if __name__ == "__main__":
+    handler = SocketModeHandler(app, os.environ["SLACK_APP_TOKEN"])
+    handler.start()

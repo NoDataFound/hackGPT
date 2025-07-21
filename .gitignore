@@ -1,6 +1,11 @@
+def fibonacci(n):
+    sequence = []
+    a, b = 0, 1
+    while a < n:
+        sequence.append(a)
+        a, b = b, a + b
+    return sequence
 
-.DS_Store
-
-.vscode/settings.json
-
-.env
+n = int(input("Enter a number: "))
+print(f"The Fibonacci sequence up to {n} is:")
+print(fibonacci(n))
