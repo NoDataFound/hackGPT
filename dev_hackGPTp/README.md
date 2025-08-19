@@ -43,7 +43,7 @@ Note: because of the way `langchain` loads the `SentenceTransformers` embeddings
 
 ## Instructions for ingesting your own dataset
 
-Put any and all your files into the `source_documents` directory
+Put any and all your files into the `input\files` directory
 
 The supported extensions are:
 
